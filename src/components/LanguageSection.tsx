@@ -1,7 +1,6 @@
 // components/LanguageSection.tsx
 'use client'
 import { motion } from 'framer-motion'
-import { Languages } from 'lucide-react'
 
 const languages = [
   { name: 'English', books: 0, flag: '🇬🇧' },
