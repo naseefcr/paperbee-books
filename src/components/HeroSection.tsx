@@ -22,7 +22,7 @@ const HeroSection = () => {
             </p>
             <p className="text-lg mb-10 text-blue-50">
               At Paperbee Books, we believe that books open doors to imagination, 
-              curiosity, and understanding. We publish vibrant children's literature 
+              curiosity, and understanding. We publish vibrant children&apos;s literature 
               and high-quality educational materials in a wide range of languages.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
