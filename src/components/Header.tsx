@@ -1,9 +1,10 @@
-// components/Header.tsx (Updated with translation support)
+// components/Header.tsx
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X, ShoppingCart, Globe } from 'lucide-react'
 import { useLanguage } from '@/lib/context/LanguageContext'
+import Image from 'next/image'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -22,9 +23,26 @@ const Header = () => {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="h-10 w-10 bg-paperbee-yellow rounded-full flex items-center justify-center">
-              <span className="text-paperbee-blue font-bold text-xl">PB</span>
+          <Link href="/" className="flex items-center space-x-3">
+            {/* Logo placeholder - replace with actual logo */}
+            <div className="h-12 w-12 relative">
+              {/* You can replace this with your actual logo */}
+              <Image
+                src="/logo.png" // Place your logo in public/logo.png
+                alt="Paperbee Books Logo"
+                width={48}
+                height={48}
+                className="rounded-lg"
+                onError={() => {
+                  // Fallback if logo image doesn't exist
+                  // e.currentTarget.style.display = 'none'
+                  // e.currentTarget.nextElementSibling.style.display = 'flex'
+                }}
+              />
+              {/* Fallback logo */}
+              <div className="h-12 w-12 bg-paperbee-yellow rounded-lg flex items-center justify-center" style={{display: 'none'}}>
+                <span className="text-paperbee-blue font-bold text-xl">🐝</span>
+              </div>
             </div>
             <span className="text-xl font-bold text-paperbee-blue hidden sm:block">
               PAPERBEE BOOKS
