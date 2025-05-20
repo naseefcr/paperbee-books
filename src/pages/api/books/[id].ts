@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../../lib/firebase';
-import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp, DocumentData } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 
 interface BookUpdateInput {
   title?: string;

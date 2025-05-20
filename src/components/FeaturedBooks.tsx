@@ -3,12 +3,9 @@
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Star, Heart, ArrowRight } from 'lucide-react'
+import {  ArrowRight } from 'lucide-react'
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react'; // Star and Heart are not directly used here anymore, BookCard handles them
 import BookCard from './BookCard'; // Assuming BookCard is in the same directory
 
 // Define the Book interface, matching BookCard's expected props and API response
