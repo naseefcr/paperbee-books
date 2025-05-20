@@ -1,35 +1,24 @@
-// lib/firebase.ts
-// Note: Replace these with your actual Firebase config values
-// You can get these from the Firebase Console > Project Settings > General > Your apps
-
-// For development, you can use these placeholder values
-// Make sure to replace them with real values before deployment
+// src/lib/firebase.ts
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth'; // For admin authentication later
+// import { getStorage } from 'firebase/storage'; // If you plan to use Firebase Storage for images
 
 const firebaseConfig = {
-  // Replace these with your actual Firebase configuration
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "demo-api-key",
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "paperbee-books-demo.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "paperbee-books-demo",
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "paperbee-books-demo.appspot.com",
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "123456789",
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:123456789:web:abcdef123456"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, // Optional
 };
 
-// For now, let's comment out Firebase initialization to prevent errors
-// Uncomment these when you have actual Firebase configuration
+// Initialize Firebase
+// Check if apps are already initialized to prevent errors during hot reloading / SSR
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore(app);
+const auth = getAuth(app); // If using Auth
+// const storage = getStorage(app); // If using Storage for images etc.
 
-/*
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-*/
-
-// For development, export empty objects
-export const db = {};
-export const storage = {};
-
-export default firebaseConfig;
+export { app, db, auth /*, storage */ };
