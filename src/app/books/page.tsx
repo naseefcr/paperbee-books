@@ -1,105 +1,122 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // app/books/page.tsx
 'use client'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Search, Filter, Grid, List, ArrowUpDown } from 'lucide-react'
-import BookCard from '@/components/BookCard'
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Filter, Grid, List } from 'lucide-react'; // ArrowUpDown not used directly in this version
+import BookCard from '@/components/BookCard';
 
-// Sample book data - replace with actual data from database
-const booksData = [
-  {
-    id: 1,
-    title: "The Magical Forest",
-    author: "Sarah Johnson",
-    language: "English",
-    category: "storybook",
-    price: { usd: 12.99, inr: 999 },
-    rating: 4.8,
-    coverImage: "/api/placeholder/300/400",
-    isNew: true,
-  },
-  {
-    id: 2,
-    title: "حكايات العجائب",
-    author: "أحمد محمد",
-    language: "Arabic",
-    category: "storybook",
-    price: { usd: 14.99, inr: 1199 },
-    rating: 4.9,
-    coverImage: "/api/placeholder/300/400",
-    isBestseller: true,
-  },
-  {
-    id: 3,
-    title: "魔法の物語",
-    author: "田中花子",
-    language: "Japanese",
-    category: "poetry",
-    price: { usd: 13.99, inr: 1099 },
-    rating: 4.7,
-    coverImage: "/api/placeholder/300/400",
-  },
-  {
-    id: 4,
-    title: "കഥകൾ കുഞ്ഞുങ്ങൾക്ക്",
-    author: "രാധിക നായർ",
-    language: "Malayalam",
-    category: "educational",
-    price: { usd: 11.99, inr: 899 },
-    rating: 4.6,
-    coverImage: "/api/placeholder/300/400",
-  },
-  {
-    id: 5,
-    title: "ಮಕ್ಕಳ ಕಥೆಗಳು",
-    author: "ಗೀತಾ ಶರ್ಮಾ",
-    language: "Kannada",
-    category: "storybook",
-    price: { usd: 12.99, inr: 999 },
-    rating: 4.5,
-    coverImage: "/api/placeholder/300/400",
-  },
-]
+// Define Book interface matching BookCard props and API response
+interface Book {
+  id: string;
+  title: string;
+  author: string;
+  language?: string;
+  category?: string;
+  price: number; // API provides flat price
+  currency?: string; // API might provide this, or assume default
+  rating?: number;
+  coverImageUrl: string; // API provides coverImageUrl
+  isNew?: boolean;
+  isBestseller?: boolean;
+  createdAt?: string; // For 'newest' sorting
+  // other fields like isbn, description, stock are available from API if needed
+}
 
 const BooksPage = () => {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedLanguage, setSelectedLanguage] = useState('all')
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [sortBy, setSortBy] = useState('newest')
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [showFilters, setShowFilters] = useState(false)
+  const [allBooks, setAllBooks] = useState<Book[]>([]);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const languages = ['all', 'English', 'Arabic', 'Japanese', 'Malayalam', 'Kannada']
-  const categories = ['all', 'storybook', 'poetry', 'educational']
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('newest'); // Default sort
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Static data for filters - could be dynamic if needed
+  const languages = ['all', 'English', 'Arabic', 'Japanese', 'Malayalam', 'Kannada'];
+  const categories = ['all', 'storybook', 'poetry', 'educational', 'activity', 'learning']; // Added more examples
   const sortOptions = [
     { value: 'newest', label: 'Newest First' },
-    { value: 'popularity', label: 'Most Popular' },
+    { value: 'popularity', label: 'Most Popular (Rating)' },
     { value: 'price-low', label: 'Price: Low to High' },
     { value: 'price-high', label: 'Price: High to Low' },
-  ]
+    { value: 'title-asc', label: 'Title: A-Z' },
+    { value: 'title-desc', label: 'Title: Z-A' },
+  ];
 
-  // Filter and sort books
-  const filteredBooks = booksData
-    .filter(book => {
-      const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           book.author.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchesLanguage = selectedLanguage === 'all' || book.language === selectedLanguage
-      const matchesCategory = selectedCategory === 'all' || book.category === selectedCategory
-      return matchesSearch && matchesLanguage && matchesCategory
-    })
-    .sort((a, b) => {
-      switch(sortBy) {
-        case 'popularity':
-          return b.rating - a.rating
-        case 'price-low':
-          return a.price.usd - b.price.usd
-        case 'price-high':
-          return b.price.usd - a.price.usd
-        default:
-          return b.id - a.id // Default to newest
+  // Fetch all books from API
+  useEffect(() => {
+    const fetchAllBooks = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/books');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch books: ${response.status} ${response.statusText}`);
+        }
+        const data: Book[] = await response.json();
+        setAllBooks(data);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+        setAllBooks([]);
+      } finally {
+        setLoading(false);
       }
-    })
+    };
+    fetchAllBooks();
+  }, []);
+
+  // Filter and sort books whenever dependencies change
+  useEffect(() => {
+    let booksToProcess = [...allBooks];
+
+    // Apply search filter
+    if (searchQuery) {
+      booksToProcess = booksToProcess.filter(book =>
+        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply language filter
+    if (selectedLanguage !== 'all') {
+      booksToProcess = booksToProcess.filter(book => book.language === selectedLanguage);
+    }
+
+    // Apply category filter
+    if (selectedCategory !== 'all') {
+      booksToProcess = booksToProcess.filter(book => book.category === selectedCategory);
+    }
+
+    // Apply sorting
+    booksToProcess.sort((a, b) => {
+      switch (sortBy) {
+        case 'popularity':
+          return (b.rating || 0) - (a.rating || 0);
+        case 'price-low':
+          return a.price - b.price; // Use flat price
+        case 'price-high':
+          return b.price - a.price; // Use flat price
+        case 'title-asc':
+          return a.title.localeCompare(b.title);
+        case 'title-desc':
+          return b.title.localeCompare(a.title);
+        case 'newest':
+        default:
+          // Assuming createdAt is an ISO string. Convert to Date for comparison.
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return dateB - dateA;
+      }
+    });
+
+    setFilteredBooks(booksToProcess);
+  }, [allBooks, searchQuery, selectedLanguage, selectedCategory, sortBy]);
+
 
   return (
     <div className="min-h-screen bg-pageBackground">
@@ -245,46 +262,53 @@ const BooksPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-6">
           <p className="text-secondaryText">
-            Showing {filteredBooks.length} books
+            {loading ? 'Loading books...' : `Showing ${filteredBooks.length} books`}
           </p>
         </div>
 
-        {/* Books Grid/List */}
-        <motion.div
-          layout
-          className={viewMode === 'grid' 
-            ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6' 
-            : 'space-y-4'
-          }
-        >
-          {filteredBooks.map((book, index) => (
-            <motion.div
-              key={book.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <BookCard book={book} viewMode={viewMode} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* No Results */}
-        {filteredBooks.length === 0 && (
+        {loading && (
+          <p className="text-center py-12 text-mainText">Loading all books...</p>
+        )}
+        {error && (
+          <p className="text-center py-12 text-red-500">Error loading books: {error}</p>
+        )}
+        {!loading && !error && filteredBooks.length === 0 && (
           <div className="text-center py-12">
             <p className="text-secondaryText text-lg">No books found matching your criteria.</p>
             <button
               onClick={() => {
-                setSearchQuery('')
-                setSelectedLanguage('all')
-                setSelectedCategory('all')
+                setSearchQuery('');
+                setSelectedLanguage('all');
+                setSelectedCategory('all');
+                setSortBy('newest');
               }}
               className="mt-4 text-primaryAction hover:underline"
             >
               Clear filters
             </button>
           </div>
+        )}
+
+        {!loading && !error && filteredBooks.length > 0 && (
+          <motion.div
+            layout
+            className={viewMode === 'grid' 
+              ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6' 
+              : 'space-y-4'
+            }
+          >
+            {filteredBooks.map((book, index) => (
+              <motion.div
+                key={book.id} // Ensure key is stable and from book data
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }} // Reduced delay for faster feel
+              >
+                <BookCard book={book} viewMode={viewMode} />
+              </motion.div>
+            ))}
+          </motion.div>
         )}
       </div>
     </div>

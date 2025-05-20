@@ -3,32 +3,39 @@
 // components/BookCard.tsx
 import Link from 'next/link'
 import { Star, Heart, ShoppingCart } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+
+// Updated Book interface to align with API and example
+interface Book {
+  id: string; // Changed from number to string
+  title: string;
+  author: string;
+  language?: string; // Kept as optional if not always present
+  category?: string; // Kept as optional
+  price: number; // Changed from object to single number
+  currency?: string; // Added currency field
+  rating?: number; // Kept as optional
+  coverImageUrl: string; // Renamed from coverImage
+  isNew?: boolean;
+  isBestseller?: boolean;
+  // Fields like isbn, description, stock are available from API but not used in card currently
+}
 
 interface BookCardProps {
-  book: {
-    id: number
-    title: string
-    author: string
-    language: string
-    category: string
-    price: { usd: number; inr: number }
-    rating: number
-    coverImage: string
-    isNew?: boolean
-    isBestseller?: boolean
-  }
-  viewMode: 'grid' | 'list'
+  book: Book;
+  viewMode: 'grid' | 'list';
 }
 
 const BookCard: React.FC<BookCardProps> = ({ book, viewMode }) => {
+  const displayCurrency = book.currency || '$'; // Default to $ if no currency provided
+
   if (viewMode === 'list') {
     return (
       <div className="bg-pageBackground rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="flex p-4">
           <div className="w-32 h-48 flex-shrink-0 relative">
             <img 
-              src={book.coverImage} 
+              src={book.coverImageUrl || '/placeholder-cover.jpg'} // Use coverImageUrl and provide fallback
               alt={book.title}
               className="w-full h-full object-cover rounded"
             />
@@ -58,14 +65,14 @@ const BookCard: React.FC<BookCardProps> = ({ book, viewMode }) => {
                 </div>
               </div>
               <div className="text-right">
-                  <p className="text-lg font-bold text-primaryAction">${book.price.usd}</p>
-                  <p className="text-sm text-secondaryText">₹{book.price.inr}</p>
+                  <p className="text-lg font-bold text-primaryAction">{displayCurrency}{book.price.toFixed(2)}</p>
+                  {/* Secondary currency display removed for simplicity with flat price structure */}
               </div>
             </div>
             <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center text-secondaryButtonIcon">
-                <Star className="h-4 w-4 fill-current" />
-                  <span className="text-sm text-secondaryText ml-1">{book.rating}</span>
+                {book.rating && <Star className="h-4 w-4 fill-current" />}
+                  <span className="text-sm text-secondaryText ml-1">{book.rating || 'N/A'}</span>
               </div>
               <div className="flex gap-2">
                   <button className="p-2 border rounded-full hover:bg-accentHighlight transition">
@@ -93,7 +100,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, viewMode }) => {
     <div className="bg-pageBackground rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
       <div className="aspect-[3/4] relative">
         <img 
-          src={book.coverImage} 
+          src={book.coverImageUrl || '/placeholder-cover.jpg'} // Use coverImageUrl and provide fallback
           alt={book.title}
           className="w-full h-full object-cover"
         />
@@ -120,22 +127,22 @@ const BookCard: React.FC<BookCardProps> = ({ book, viewMode }) => {
             <p className="text-sm text-secondaryText">{book.author}</p>
           </div>
           <div className="text-right">
-            <p className="text-lg font-bold text-primaryAction">${book.price.usd}</p>
-            <p className="text-xs text-secondaryText">₹{book.price.inr}</p>
+            <p className="text-lg font-bold text-primaryAction">{displayCurrency}{book.price.toFixed(2)}</p>
+            {/* Secondary currency display removed for simplicity */}
           </div>
         </div>
         <div className="flex items-center gap-2 mt-2 mb-4">
           <span className="text-xs bg-accentHighlight text-secondaryText px-2 py-1 rounded">
-            {book.language}
+            {book.language || 'N/A'}
           </span>
           <span className="text-xs bg-accentHighlight text-secondaryText px-2 py-1 rounded">
-            {book.category}
+            {book.category || 'N/A'}
           </span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center text-secondaryButtonIcon">
-            <Star className="h-4 w-4 fill-current" />
-            <span className="text-sm text-secondaryText ml-1">{book.rating}</span>
+            {book.rating && <Star className="h-4 w-4 fill-current" />}
+            <span className="text-sm text-secondaryText ml-1">{book.rating || 'N/A'}</span>
           </div>
           <div className="flex gap-2">
             <button className="p-2 bg-primaryAction text-white rounded-full hover:bg-primaryAction transition">

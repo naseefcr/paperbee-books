@@ -5,38 +5,58 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Star, Heart, ArrowRight } from 'lucide-react'
 
-// Sample data - replace with actual book data
-const featuredBooks = [
-  {
-    id: 1,
-    title: "The Magical Forest",
-    author: "Sarah Johnson",
-    language: "English",
-    price: "$12.99",
-    rating: 4.8,
-    image: "/api/placeholder/300/400",
-  },
-  {
-    id: 2,
-    title: "حكايات العجائب",
-    author: "أحمد محمد",
-    language: "Arabic",
-    price: "$14.99",
-    rating: 4.9,
-    image: "/api/placeholder/300/400",
-  },
-  {
-    id: 3,
-    title: "魔法の物語",
-    author: "田中花子",
-    language: "Japanese",
-    price: "¥1,500",
-    rating: 4.7,
-    image: "/api/placeholder/300/400",
-  },
-]
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react'; // Star and Heart are not directly used here anymore, BookCard handles them
+import BookCard from './BookCard'; // Assuming BookCard is in the same directory
+
+// Define the Book interface, matching BookCard's expected props and API response
+interface Book {
+  id: string;
+  title: string;
+  author: string;
+  language?: string;
+  category?: string;
+  price: number;
+  currency?: string;
+  rating?: number;
+  coverImageUrl: string;
+  isNew?: boolean;
+  isBestseller?: boolean;
+  // Fields from API like isbn, description, stock, createdAt, updatedAt are available if needed
+}
 
 const FeaturedBooks = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/books');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch books: ${response.status} ${response.statusText}`);
+        }
+        const data: Book[] = await response.json();
+        // Sort by rating (desc) to get "featured" by popularity, then take top 3.
+        // This is a client-side sort/filter; ideally, API supports this.
+        const sortedData = data.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        setBooks(sortedData.slice(0, 3)); 
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+        setBooks([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
   return (
     <section className="py-16 bg-accentHighlight">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,50 +75,34 @@ const FeaturedBooks = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredBooks.map((book, index) => (
-            <motion.div
-              key={book.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-pageBackground rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
-            >
-              <div className="aspect-[3/4] relative bg-accentHighlight">
-                <img 
-                  src={book.image} 
-                  alt={book.title}
-                  className="w-full h-full object-cover"
-                />
-                <button className="absolute top-4 right-4 p-2 bg-pageBackground/80 backdrop-blur-sm rounded-full hover:bg-accentHighlight transition">
-                  <Heart className="h-5 w-5 text-secondaryText" />
-                </button>
-              </div>
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="font-semibold text-mainText line-clamp-2">{book.title}</h3>
-                    <p className="text-sm text-secondaryText">{book.author}</p>
-                  </div>
-                  <span className="text-lg font-bold text-primaryAction">{book.price}</span>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center text-secondaryButtonIcon">
-                    <Star className="h-4 w-4 fill-current" />
-                    <span className="text-sm text-secondaryText ml-1">{book.rating}</span>
-                  </div>
-                  <Link 
-                    href={`/books/${book.id}`}
-                    className="bg-primaryAction text-white px-4 py-2 rounded text-sm hover:bg-primaryAction transition"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {loading && (
+          <p className="text-center py-8 text-mainText">Loading featured books...</p>
+        )}
+
+        {error && (
+          <p className="text-center py-8 text-red-500">Error: {error}</p>
+        )}
+
+        {!loading && !error && books.length === 0 && (
+          <p className="text-center py-8 text-mainText">No featured books available at the moment.</p>
+        )}
+
+        {!loading && !error && books.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {books.map((book, index) => (
+              <motion.div
+                key={book.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                {/* Assuming BookCard handles its own outer div styling like bg, shadow, rounded etc. */}
+                <BookCard book={book} viewMode="grid" />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         <div className="text-center mt-12">
           <Link 
@@ -111,7 +115,7 @@ const FeaturedBooks = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturedBooks
+export default FeaturedBooks;
