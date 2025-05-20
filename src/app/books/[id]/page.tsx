@@ -56,15 +56,15 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
   const allImages = [book.coverImage, ...book.samplePages]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-pageBackground">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <nav className="flex items-center text-sm text-gray-500">
-          <Link href="/" className="hover:text-paperbee-blue">Home</Link>
+        <nav className="flex items-center text-sm text-secondaryText">
+          <Link href="/" className="hover:text-primaryAction">Home</Link>
           <ChevronRight className="h-4 w-4 mx-2" />
-          <Link href="/books" className="hover:text-paperbee-blue">Books</Link>
+          <Link href="/books" className="hover:text-primaryAction">Books</Link>
           <ChevronRight className="h-4 w-4 mx-2" />
-          <span className="text-gray-900">{book.title}</span>
+          <span className="text-mainText">{book.title}</span>
         </nav>
       </div>
 
@@ -77,7 +77,7 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="relative aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden"
+              className="relative aspect-[3/4] bg-accentHighlight rounded-lg overflow-hidden"
             >
               <img
                 src={allImages[selectedImage]}
@@ -85,12 +85,12 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
                 className="w-full h-full object-cover"
               />
               {book.isNew && (
-                <span className="absolute top-4 left-4 bg-paperbee-green text-white text-sm px-3 py-1 rounded">
+                <span className="absolute top-4 left-4 bg-accentHighlight text-mainText text-sm px-3 py-1 rounded">
                   New
                 </span>
               )}
               {book.isBestseller && (
-                <span className="absolute top-4 right-4 bg-paperbee-orange text-white text-sm px-3 py-1 rounded">
+                <span className="absolute top-4 right-4 bg-secondaryButtonIcon text-mainText text-sm px-3 py-1 rounded">
                   Bestseller
                 </span>
               )}
@@ -103,7 +103,7 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
                   key={index}
                   onClick={() => setSelectedImage(index)}
                   className={`flex-shrink-0 w-24 h-32 rounded overflow-hidden border-2 transition ${
-                    selectedImage === index ? 'border-paperbee-blue' : 'border-transparent'
+                    selectedImage === index ? 'border-primaryAction' : 'border-transparent'
                   }`}
                 >
                   <img src={image} alt="" className="w-full h-full object-cover" />
@@ -115,65 +115,65 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
           {/* Book Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{book.title}</h1>
-              <p className="text-lg text-gray-600">by {book.author}</p>
+              <h1 className="text-3xl font-bold text-mainText mb-2">{book.title}</h1>
+              <p className="text-lg text-secondaryText">by {book.author}</p>
               {book.illustrator && (
-                <p className="text-gray-600">Illustrated by {book.illustrator}</p>
+                <p className="text-secondaryText">Illustrated by {book.illustrator}</p>
               )}
             </div>
 
             {/* Rating */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center text-yellow-400">
+              <div className="flex items-center text-secondaryButtonIcon">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-5 w-5 ${i < Math.floor(book.rating) ? 'fill-current' : 'text-gray-300'}`}
+                    className={`h-5 w-5 ${i < Math.floor(book.rating) ? 'fill-current' : 'text-accentHighlight'}`}
                   />
                 ))}
               </div>
-              <span className="text-gray-600">{book.rating} ({book.reviewCount} reviews)</span>
+              <span className="text-secondaryText">{book.rating} ({book.reviewCount} reviews)</span>
             </div>
 
             {/* Price */}
             <div>
-              <p className="text-3xl font-bold text-paperbee-blue">${book.price.usd}</p>
-              <p className="text-lg text-gray-600">₹{book.price.inr}</p>
+              <p className="text-3xl font-bold text-primaryAction">${book.price.usd}</p>
+              <p className="text-lg text-secondaryText">₹{book.price.inr}</p>
             </div>
 
             {/* Description */}
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
-              <p className="text-gray-600">{book.description}</p>
+              <h3 className="font-semibold text-mainText mb-2">Description</h3>
+              <p className="text-secondaryText">{book.description}</p>
             </div>
 
             {/* Details */}
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-gray-500">Language</p>
-                <p className="font-medium">{book.language}</p>
+                <p className="text-secondaryText">Language</p>
+                <p className="font-medium text-mainText">{book.language}</p>
               </div>
               <div>
-                <p className="text-gray-500">Age Group</p>
-                <p className="font-medium">{book.ageGroup} years</p>
+                <p className="text-secondaryText">Age Group</p>
+                <p className="font-medium text-mainText">{book.ageGroup} years</p>
               </div>
               <div>
-                <p className="text-gray-500">Pages</p>
-                <p className="font-medium">{book.pages}</p>
+                <p className="text-secondaryText">Pages</p>
+                <p className="font-medium text-mainText">{book.pages}</p>
               </div>
               <div>
-                <p className="text-gray-500">Category</p>
-                <p className="font-medium capitalize">{book.category}</p>
+                <p className="text-secondaryText">Category</p>
+                <p className="font-medium capitalize text-mainText">{book.category}</p>
               </div>
             </div>
 
             {/* Features */}
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Features</h3>
+              <h3 className="font-semibold text-mainText mb-2">Features</h3>
               <ul className="space-y-1">
                 {book.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-600">
-                    <span className="w-2 h-2 bg-paperbee-green rounded-full mr-2"></span>
+                  <li key={index} className="flex items-center text-secondaryText">
+                    <span className="w-2 h-2 bg-secondaryButtonIcon rounded-full mr-2"></span>
                     {feature}
                   </li>
                 ))}
@@ -183,38 +183,38 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
             {/* Quantity and Add to Cart */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <p className="text-gray-600">Quantity:</p>
+                <p className="text-secondaryText">Quantity:</p>
                 <div className="flex items-center border rounded">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:bg-gray-50"
+                    className="p-2 hover:bg-accentHighlight"
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-4 w-4 text-mainText" />
                   </button>
-                  <span className="w-12 text-center">{quantity}</span>
+                  <span className="w-12 text-center text-mainText">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:bg-gray-50"
+                    className="p-2 hover:bg-accentHighlight"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-4 w-4 text-mainText" />
                   </button>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <button className="flex-1 bg-paperbee-blue text-white py-3 rounded-lg hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                <button className="flex-1 bg-primaryAction text-white py-3 rounded-lg hover:bg-rustOrange transition flex items-center justify-center gap-2">
                   <ShoppingCart className="h-5 w-5" />
                   Add to Cart
                 </button>
                 <button
                   onClick={() => setIsWishlisted(!isWishlisted)}
                   className={`p-3 border rounded-lg transition ${
-                    isWishlisted ? 'bg-red-50 border-red-200 text-red-600' : 'hover:bg-gray-50'
+                    isWishlisted ? 'bg-primaryAction/10 border-primaryAction/20 text-primaryAction' : 'hover:bg-accentHighlight text-secondaryText'
                   }`}
                 >
                   <Heart className={`h-5 w-5 ${isWishlisted ? 'fill-current' : ''}`} />
                 </button>
-                <button className="p-3 border rounded-lg hover:bg-gray-50 transition">
+                <button className="p-3 border rounded-lg hover:bg-accentHighlight text-secondaryText transition">
                   <Share2 className="h-5 w-5" />
                 </button>
               </div>
@@ -236,7 +236,7 @@ const BookDetailPage = ({ params }: BookDetailPageProps) => {
 
         {/* Related Books */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">You May Also Like</h2>
+          <h2 className="text-2xl font-bold text-mainText mb-8">You May Also Like</h2>
           {/* Add related books component here */}
         </div>
       </div>

@@ -38,7 +38,7 @@ const featuredBooks = [
 
 const FeaturedBooks = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-accentHighlight">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,10 +47,10 @@ const FeaturedBooks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-mainText mb-4">
             Featured Books
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-secondaryText">
             Discover our most popular children&apos;s stories
           </p>
         </motion.div>
@@ -63,34 +63,34 @@ const FeaturedBooks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+              className="bg-pageBackground rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
             >
-              <div className="aspect-[3/4] relative bg-gray-200">
+              <div className="aspect-[3/4] relative bg-accentHighlight">
                 <img 
                   src={book.image} 
                   alt={book.title}
                   className="w-full h-full object-cover"
                 />
-                <button className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition">
-                  <Heart className="h-5 w-5 text-gray-600" />
+                <button className="absolute top-4 right-4 p-2 bg-pageBackground/80 backdrop-blur-sm rounded-full hover:bg-accentHighlight transition">
+                  <Heart className="h-5 w-5 text-secondaryText" />
                 </button>
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h3 className="font-semibold text-gray-900 line-clamp-2">{book.title}</h3>
-                    <p className="text-sm text-gray-600">{book.author}</p>
+                    <h3 className="font-semibold text-mainText line-clamp-2">{book.title}</h3>
+                    <p className="text-sm text-secondaryText">{book.author}</p>
                   </div>
-                  <span className="text-lg font-bold text-paperbee-blue">{book.price}</span>
+                  <span className="text-lg font-bold text-primaryAction">{book.price}</span>
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center text-yellow-400">
+                  <div className="flex items-center text-secondaryButtonIcon">
                     <Star className="h-4 w-4 fill-current" />
-                    <span className="text-sm text-gray-600 ml-1">{book.rating}</span>
+                    <span className="text-sm text-secondaryText ml-1">{book.rating}</span>
                   </div>
                   <Link 
                     href={`/books/${book.id}`}
-                    className="bg-paperbee-blue text-white px-4 py-2 rounded text-sm hover:bg-blue-600 transition"
+                    className="bg-primaryAction text-white px-4 py-2 rounded text-sm hover:bg-primaryAction transition"
                   >
                     View Details
                   </Link>
@@ -103,7 +103,7 @@ const FeaturedBooks = () => {
         <div className="text-center mt-12">
           <Link 
             href="/books"
-            className="inline-flex items-center bg-paperbee-blue text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition"
+            className="inline-flex items-center bg-primaryAction text-white px-8 py-3 rounded-lg hover:bg-primaryAction transition"
           >
             View All Books
             <ArrowRight className="ml-2 h-5 w-5" />

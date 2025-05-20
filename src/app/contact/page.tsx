@@ -88,9 +88,9 @@ const ContactPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pageBackground">
       {/* Hero Section */}
-      <section className="bg-paperbee-blue text-white py-16">
+      <section className="bg-headerNavigation text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -99,7 +99,7 @@ const ContactPage = () => {
             className="text-center"
           >
             <h1 className="text-3xl lg:text-4xl font-bold mb-4">Get in Touch</h1>
-            <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+            <p className="text-accentHighlight text-lg max-w-2xl mx-auto">
               Have questions, ideas, or want to collaborate? We&apos;d love to hear from you!
             </p>
           </motion.div>
@@ -117,18 +117,23 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 shadow-sm"
+                className="bg-pageBackground rounded-lg p-6 shadow-sm"
               >
-                <div className={`w-12 h-12 ${info.color} mb-4`}>
+                <div className={`w-12 h-12 ${
+                  info.title === 'Visit Us' ? 'text-primaryAction' :
+                  info.title === 'Call Us' ? 'text-secondaryButtonIcon' :
+                  info.title === 'Email Us' ? 'text-primaryAction' :
+                  'text-headerNavigation' // Default for Business Hours
+                } mb-4`}>
                   <info.icon className="h-full w-full" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{info.title}</h3>
+                <h3 className="font-semibold text-mainText mb-2">{info.title}</h3>
                 {info.link ? (
-                  <a href={info.link} className="text-gray-600 hover:text-paperbee-blue transition">
+                  <a href={info.link} className="text-secondaryText hover:text-primaryAction transition">
                     {info.content}
                   </a>
                 ) : (
-                  <p className="text-gray-600">{info.content}</p>
+                  <p className="text-secondaryText">{info.content}</p>
                 )}
               </motion.div>
             ))}
@@ -142,10 +147,10 @@ const ContactPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+              <h2 className="text-2xl font-bold text-mainText mb-6">Send us a message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Your Name
                   </label>
                   <input
@@ -154,13 +159,13 @@ const ContactPage = () => {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       Email
                     </label>
                     <input
@@ -169,11 +174,11 @@ const ContactPage = () => {
                       value={form.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       Phone (Optional)
                     </label>
                     <input
@@ -181,20 +186,20 @@ const ContactPage = () => {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Message Type
                   </label>
                   <select
                     name="messageType"
                     value={form.messageType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   >
                     {messageTypes.map(type => (
                       <option key={type.value} value={type.value}>
@@ -205,7 +210,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Subject
                   </label>
                   <input
@@ -214,12 +219,12 @@ const ContactPage = () => {
                     value={form.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -228,14 +233,14 @@ const ContactPage = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-paperbee-blue text-white py-3 rounded-lg hover:bg-blue-600 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full bg-primaryAction text-white py-3 rounded-lg hover:bg-rustOrange transition flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     'Sending...'
@@ -268,15 +273,15 @@ const ContactPage = () => {
               className="space-y-8"
             >
               {/* Map Placeholder */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden h-80">
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+              <div className="bg-pageBackground rounded-lg shadow-sm overflow-hidden h-80">
+                <div className="w-full h-full bg-accentHighlight flex items-center justify-center text-secondaryText">
                   <p>Google Maps Integration Here</p>
                 </div>
               </div>
 
               {/* Social Media */}
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
+              <div className="bg-pageBackground rounded-lg p-6 shadow-sm">
+                <h3 className="font-semibold text-mainText mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
                   <a href="#" className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
                     <Facebook className="h-6 w-6" />
@@ -294,14 +299,14 @@ const ContactPage = () => {
               </div>
 
               {/* Join Us */}
-              <div className="bg-paperbee-yellow/10 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-2">Join Our Team</h3>
-                <p className="text-gray-600 mb-4">
+              <div className="bg-secondaryButtonIcon/10 rounded-lg p-6">
+                <h3 className="font-semibold text-mainText mb-2">Join Our Team</h3>
+                <p className="text-secondaryText mb-4">
                   Are you an author, illustrator, or educator? We&apos;d love to hear from you!
                 </p>
                 <a 
                   href="/join"
-                  className="inline-flex items-center text-paperbee-blue hover:text-blue-600 transition"
+                  className="inline-flex items-center text-primaryAction hover:text-rustOrange transition"
                 >
                   Learn More →
                 </a>

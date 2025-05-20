@@ -74,15 +74,15 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pageBackground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <Link href="/cart" className="inline-flex items-center text-gray-600 hover:text-paperbee-blue mb-4">
+          <Link href="/cart" className="inline-flex items-center text-secondaryText hover:text-primaryAction mb-4">
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Cart
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Checkout</h1>
+          <h1 className="text-2xl font-bold text-mainText">Checkout</h1>
         </div>
 
         {/* Stepper */}
@@ -93,25 +93,25 @@ const CheckoutPage = () => {
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition ${
                     step.number === activeStep
-                      ? 'border-paperbee-blue bg-paperbee-blue text-white'
+                      ? 'border-primaryAction bg-primaryAction text-white'
                       : step.number < activeStep
-                      ? 'border-paperbee-green bg-paperbee-green text-white'
-                      : 'border-gray-300 bg-white text-gray-400'
+                      ? 'border-secondaryButtonIcon bg-secondaryButtonIcon text-mainText'
+                      : 'border-accentHighlight bg-pageBackground text-secondaryText'
                   }`}
                 >
                   <step.icon className="h-5 w-5" />
                 </div>
                 <span className={`mt-2 text-sm ${
-                  step.number === activeStep ? 'text-paperbee-blue font-medium' : 'text-gray-500'
+                  step.number === activeStep ? 'text-primaryAction font-medium' : 'text-secondaryText'
                 }`}>
                   {step.title}
                 </span>
               </div>
             ))}
             {/* Connecting line */}
-            <div className="absolute top-5 left-0 right-0 h-0.5 bg-gray-300 -z-10">
+            <div className="absolute top-5 left-0 right-0 h-0.5 bg-accentHighlight -z-10">
               <div 
-                className="h-full bg-paperbee-green transition-all duration-300" 
+                className="h-full bg-secondaryButtonIcon transition-all duration-300" 
                 style={{ width: `${((activeStep - 1) / 2) * 100}%` }}
               />
             </div>
@@ -119,7 +119,7 @@ const CheckoutPage = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-6">
+        <form onSubmit={handleSubmit} className="bg-pageBackground rounded-lg shadow-sm p-6">
           {/* Step 1: Customer Information */}
           {activeStep === 1 && (
             <motion.div
@@ -127,10 +127,10 @@ const CheckoutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Customer Information</h2>
+              <h2 className="text-lg font-semibold text-mainText mb-6">Customer Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     First Name
                   </label>
                   <input
@@ -139,11 +139,11 @@ const CheckoutPage = () => {
                     value={form.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Last Name
                   </label>
                   <input
@@ -152,11 +152,11 @@ const CheckoutPage = () => {
                     value={form.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Email
                   </label>
                   <input
@@ -165,11 +165,11 @@ const CheckoutPage = () => {
                     value={form.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Phone
                   </label>
                   <input
@@ -178,7 +178,7 @@ const CheckoutPage = () => {
                     value={form.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
               </div>
@@ -192,10 +192,10 @@ const CheckoutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Shipping Address</h2>
+              <h2 className="text-lg font-semibold text-mainText mb-6">Shipping Address</h2>
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Address
                   </label>
                   <input
@@ -205,12 +205,12 @@ const CheckoutPage = () => {
                     onChange={handleChange}
                     required
                     placeholder="Street address"
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       City
                     </label>
                     <input
@@ -219,11 +219,11 @@ const CheckoutPage = () => {
                       value={form.city}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       State
                     </label>
                     <input
@@ -232,11 +232,11 @@ const CheckoutPage = () => {
                       value={form.state}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       ZIP Code
                     </label>
                     <input
@@ -245,12 +245,12 @@ const CheckoutPage = () => {
                       value={form.zipCode}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Country
                   </label>
                   <select
@@ -258,7 +258,7 @@ const CheckoutPage = () => {
                     value={form.country}
                     onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   >
                     <option value="India">India</option>
                     <option value="USA">United States</option>
@@ -277,10 +277,10 @@ const CheckoutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Payment Information</h2>
+              <h2 className="text-lg font-semibold text-mainText mb-6">Payment Information</h2>
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Card Number
                   </label>
                   <input
@@ -291,12 +291,12 @@ const CheckoutPage = () => {
                     required
                     placeholder="1234 5678 9012 3456"
                     maxLength={19}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       Cardholder Name
                     </label>
                     <input
@@ -305,11 +305,11 @@ const CheckoutPage = () => {
                       value={form.cardName}
                       onChange={handleChange}
                       required
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-secondaryText mb-2">
                       CVV
                     </label>
                     <input
@@ -320,12 +320,12 @@ const CheckoutPage = () => {
                       required
                       placeholder="123"
                       maxLength={3}
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-secondaryText mb-2">
                     Expiry Date
                   </label>
                   <input
@@ -336,12 +336,12 @@ const CheckoutPage = () => {
                     required
                     placeholder="MM/YY"
                     maxLength={5}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
                   />
                 </div>
               </div>
-              <div className="mt-6 flex items-center text-sm text-gray-600">
-                <Lock className="h-4 w-4 mr-2 text-green-600" />
+              <div className="mt-6 flex items-center text-sm text-secondaryText">
+                <Lock className="h-4 w-4 mr-2 text-secondaryButtonIcon" />
                 Your payment information is secure and encrypted
               </div>
             </motion.div>
@@ -355,8 +355,8 @@ const CheckoutPage = () => {
               disabled={activeStep === 1}
               className={`px-6 py-3 rounded-lg transition ${
                 activeStep === 1
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                  ? 'bg-accentHighlight/50 text-secondaryText/50 cursor-not-allowed'
+                  : 'bg-pageBackground border border-accentHighlight text-mainText hover:bg-accentHighlight'
               }`}
             >
               Back
@@ -365,14 +365,14 @@ const CheckoutPage = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="bg-paperbee-blue text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition"
+                className="bg-primaryAction text-white px-6 py-3 rounded-lg hover:bg-rustOrange transition"
               >
                 Next
               </button>
             ) : (
               <button
                 type="submit"
-                className="bg-paperbee-green text-white px-8 py-3 rounded-lg hover:bg-green-600 transition flex items-center gap-2"
+                className="bg-secondaryButtonIcon text-mainText px-8 py-3 rounded-lg hover:bg-goldenYellow transition flex items-center gap-2"
               >
                 <Lock className="h-5 w-5" />
                 Place Order
@@ -382,21 +382,21 @@ const CheckoutPage = () => {
         </form>
 
         {/* Order Summary */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
-          <h3 className="font-semibold text-gray-900 mb-4">Order Summary</h3>
+        <div className="mt-8 bg-pageBackground rounded-lg shadow-sm p-6">
+          <h3 className="font-semibold text-mainText mb-4">Order Summary</h3>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-600">Subtotal (2 items)</span>
-              <span>$27.98</span>
+              <span className="text-secondaryText">Subtotal (2 items)</span>
+              <span className="text-mainText">$27.98</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Shipping</span>
-              <span>$5.99</span>
+              <span className="text-secondaryText">Shipping</span>
+              <span className="text-mainText">$5.99</span>
             </div>
             <hr />
-            <div className="flex justify-between font-semibold">
+            <div className="flex justify-between font-semibold text-mainText">
               <span>Total</span>
-              <span className="text-paperbee-blue">$33.97</span>
+              <span className="text-primaryAction">$33.97</span>
             </div>
           </div>
         </div>

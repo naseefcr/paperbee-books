@@ -64,14 +64,14 @@ const CartPage = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-pageBackground flex items-center justify-center">
         <div className="text-center">
-          <ShoppingBag className="h-24 w-24 text-gray-300 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
-          <p className="text-gray-600 mb-8">Looks like you haven&apos;t added any books yet.</p>
+          <ShoppingBag className="h-24 w-24 text-accentHighlight mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-mainText mb-2">Your cart is empty</h2>
+          <p className="text-secondaryText mb-8">Looks like you haven&apos;t added any books yet.</p>
           <Link 
             href="/books"
-            className="inline-flex items-center bg-paperbee-blue text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition"
+            className="inline-flex items-center bg-primaryAction text-white px-8 py-3 rounded-lg hover:bg-rustOrange transition"
           >
             Start Shopping
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -82,22 +82,22 @@ const CartPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pageBackground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-pageBackground rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-900">Shopping Cart</h1>
+            <h1 className="text-2xl font-bold text-mainText">Shopping Cart</h1>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrency('usd')}
-                className={`px-3 py-1 rounded ${currency === 'usd' ? 'bg-paperbee-blue text-white' : 'bg-gray-100'}`}
+                className={`px-3 py-1 rounded ${currency === 'usd' ? 'bg-primaryAction text-white' : 'bg-accentHighlight text-mainText'}`}
               >
                 USD
               </button>
               <button
                 onClick={() => setCurrency('inr')}
-                className={`px-3 py-1 rounded ${currency === 'inr' ? 'bg-paperbee-blue text-white' : 'bg-gray-100'}`}
+                className={`px-3 py-1 rounded ${currency === 'inr' ? 'bg-primaryAction text-white' : 'bg-accentHighlight text-mainText'}`}
               >
                 INR
               </button>
@@ -116,7 +116,7 @@ const CartPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-lg shadow-sm p-6"
+                className="bg-pageBackground rounded-lg shadow-sm p-6"
               >
                 <div className="flex gap-4">
                   <div className="w-24 h-32 flex-shrink-0 relative">
@@ -129,13 +129,13 @@ const CartPage = () => {
                   <div className="flex-1">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                        <p className="text-sm text-gray-600">{item.author}</p>
-                        <p className="text-xs text-gray-500 mt-1">{item.language}</p>
+                        <h3 className="font-semibold text-mainText">{item.title}</h3>
+                        <p className="text-sm text-secondaryText">{item.author}</p>
+                        <p className="text-xs text-secondaryText mt-1">{item.language}</p>
                       </div>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="p-2 text-gray-400 hover:text-red-600 transition"
+                        className="p-2 text-secondaryText hover:text-primaryAction transition"
                       >
                         <Trash2 className="h-5 w-5" />
                       </button>
@@ -144,23 +144,23 @@ const CartPage = () => {
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 border rounded hover:bg-gray-50"
+                          className="p-1 border rounded hover:bg-accentHighlight text-mainText"
                         >
                           <Minus className="h-4 w-4" />
                         </button>
-                        <span className="w-12 text-center">{item.quantity}</span>
+                        <span className="w-12 text-center text-mainText">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 border rounded hover:bg-gray-50"
+                          className="p-1 border rounded hover:bg-accentHighlight text-mainText"
                         >
                           <Plus className="h-4 w-4" />
                         </button>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold text-paperbee-blue">
+                        <p className="font-semibold text-primaryAction">
                           {currency === 'usd' ? `$${item.price.usd}` : `₹${item.price.inr}`}
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-secondaryText">
                           Total: {currency === 'usd' ? `$${(item.price.usd * item.quantity).toFixed(2)}` : `₹${item.price.inr * item.quantity}`}
                         </p>
                       </div>
@@ -173,25 +173,25 @@ const CartPage = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
+            <div className="bg-pageBackground rounded-lg shadow-sm p-6 sticky top-24">
+              <h2 className="text-lg font-semibold text-mainText mb-4">Order Summary</h2>
               <div className="space-y-3">
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-secondaryText">
                   <span>Subtotal ({cartItems.length} items)</span>
                   <span>
                     {currency === 'usd' ? `$${subtotal.toFixed(2)}` : `₹${subtotal}`}
                   </span>
                 </div>
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-secondaryText">
                   <span>Shipping</span>
                   <span>
                     {currency === 'usd' ? `$${shipping.toFixed(2)}` : `₹${shipping}`}
                   </span>
                 </div>
                 <hr />
-                <div className="flex justify-between font-semibold text-lg">
+                <div className="flex justify-between font-semibold text-lg text-mainText">
                   <span>Total</span>
-                  <span className="text-paperbee-blue">
+                  <span className="text-primaryAction">
                     {currency === 'usd' ? `$${total.toFixed(2)}` : `₹${total}`}
                   </span>
                 </div>
@@ -199,14 +199,14 @@ const CartPage = () => {
               <div className="mt-6 space-y-3">
                 <Link 
                   href="/checkout"
-                  className="w-full bg-paperbee-blue text-white py-3 rounded-lg hover:bg-blue-600 transition flex items-center justify-center gap-2"
+                  className="w-full bg-primaryAction text-white py-3 rounded-lg hover:bg-rustOrange transition flex items-center justify-center gap-2"
                 >
                   Proceed to Checkout
                   <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link 
                   href="/books"
-                  className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition flex items-center justify-center"
+                  className="w-full bg-pageBackground border border-accentHighlight text-mainText py-3 rounded-lg hover:bg-accentHighlight transition flex items-center justify-center"
                 >
                   Continue Shopping
                 </Link>
