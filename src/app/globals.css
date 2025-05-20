@@ -5,9 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 35, 35, 35; /* Black #232323 */
+  --background-start-rgb: 254, 247, 229; /* Cream #FEF7E5 */
+  --background-end-rgb: 254, 247, 229; /* Cream #FEF7E5 */
 }
 
 * {

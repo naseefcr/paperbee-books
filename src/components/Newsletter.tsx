@@ -30,7 +30,7 @@ const Newsletter = () => {
   }
 
   return (
-    <section className="bg-paperbee-blue text-white py-16">
+    <section className="bg-headerNavigation text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,11 +39,11 @@ const Newsletter = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-blue-100 mb-2 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 text-white">Stay Updated</h2>
+          <p className="text-accentHighlight mb-2 max-w-2xl mx-auto">
             Subscribe to our newsletter for new book releases, special offers, and parenting tips!
           </p>
-          <p className="text-paperbee-yellow text-lg font-medium mb-8">
+          <p className="text-secondaryButtonIcon text-lg font-medium mb-8">
             Books, Bees, brilliant minds: Be with Paperbee 🤝
           </p>
           
@@ -55,12 +55,12 @@ const Newsletter = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="flex-1 px-4 py-3 rounded-lg text-mainText bg-pageBackground placeholder-secondaryText focus:outline-none focus:ring-2 focus:ring-accentHighlight"
               />
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-6 py-3 bg-paperbee-yellow text-paperbee-blue font-semibold rounded-lg hover:bg-yellow-400 transition flex items-center justify-center gap-2 disabled:opacity-50"
+                className="px-6 py-3 bg-secondaryButtonIcon text-headerNavigation font-semibold rounded-lg hover:bg-goldenYellow transition flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {isSubmitting ? (
                   'Subscribing...'
@@ -78,7 +78,7 @@ const Newsletter = () => {
               </button>
             </div>
             {error && (
-              <p className="mt-2 text-red-300 text-sm">{error}</p>
+              <p className="mt-2 text-primaryAction text-sm">{error}</p>
             )}
           </form>
         </motion.div>

@@ -20,7 +20,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-pageBackground shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-3">
@@ -40,26 +40,26 @@ const Header = () => {
                 }}
               />
               {/* Fallback logo */}
-              <div className="h-12 w-12 bg-paperbee-yellow rounded-lg flex items-center justify-center" style={{display: 'none'}}>
-                <span className="text-paperbee-blue font-bold text-xl">🐝</span>
+              <div className="h-12 w-12 bg-secondaryButtonIcon rounded-lg flex items-center justify-center" style={{display: 'none'}}>
+                <span className="text-headerNavigation font-bold text-xl">🐝</span>
               </div>
             </div>
-            <span className="text-xl font-bold text-paperbee-blue hidden sm:block">
+            <span className="text-xl font-bold text-headerNavigation hidden sm:block">
               PAPERBEE BOOKS
             </span>
           </Link>
 
           <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-paperbee-blue transition">
+            <Link href="/" className="text-secondaryText hover:text-primaryAction transition">
               {t('nav.home')}
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-paperbee-blue transition">
+            <Link href="/about" className="text-secondaryText hover:text-primaryAction transition">
               {t('nav.about')}
             </Link>
-            <Link href="/books" className="text-gray-700 hover:text-paperbee-blue transition">
+            <Link href="/books" className="text-secondaryText hover:text-primaryAction transition">
               {t('nav.products')}
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-paperbee-blue transition">
+            <Link href="/contact" className="text-secondaryText hover:text-primaryAction transition">
               {t('nav.contact')}
             </Link>
           </nav>
@@ -69,13 +69,13 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className="flex items-center space-x-1 text-gray-700 hover:text-paperbee-blue"
+                className="flex items-center space-x-1 text-secondaryText hover:text-primaryAction"
               >
                 <Globe className="h-5 w-5" />
                 <span className="hidden sm:inline">{language.toUpperCase()}</span>
               </button>
               {showLanguageMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-pageBackground rounded-md shadow-lg py-1 z-50">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -85,8 +85,8 @@ const Header = () => {
                       }}
                       className={`block w-full text-left px-4 py-2 text-sm ${
                         language === lang.code 
-                          ? 'bg-paperbee-yellow text-paperbee-blue' 
-                          : 'hover:bg-gray-100'
+                          ? 'bg-secondaryButtonIcon text-headerNavigation' 
+                          : 'hover:bg-accentHighlight'
                       }`}
                     >
                       <span className="mr-2">{lang.flag}</span>
@@ -98,8 +98,8 @@ const Header = () => {
             </div>
 
             <Link href="/cart" className="relative p-2">
-              <ShoppingCart className="h-6 w-6 text-gray-700 hover:text-paperbee-blue" />
-              <span className="absolute top-0 right-0 bg-paperbee-orange text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              <ShoppingCart className="h-6 w-6 text-secondaryText hover:text-primaryAction" />
+              <span className="absolute top-0 right-0 bg-primaryAction text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 0
               </span>
             </Link>
@@ -115,12 +115,12 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="md:hidden bg-pageBackground border-t">
           <nav className="px-4 py-2 space-y-2">
-            <Link href="/" className="block py-2 text-gray-700">{t('nav.home')}</Link>
-            <Link href="/about" className="block py-2 text-gray-700">{t('nav.about')}</Link>
-            <Link href="/books" className="block py-2 text-gray-700">{t('nav.products')}</Link>
-            <Link href="/contact" className="block py-2 text-gray-700">{t('nav.contact')}</Link>
+            <Link href="/" className="block py-2 text-secondaryText hover:text-primaryAction">{t('nav.home')}</Link>
+            <Link href="/about" className="block py-2 text-secondaryText hover:text-primaryAction">{t('nav.about')}</Link>
+            <Link href="/books" className="block py-2 text-secondaryText hover:text-primaryAction">{t('nav.products')}</Link>
+            <Link href="/contact" className="block py-2 text-secondaryText hover:text-primaryAction">{t('nav.contact')}</Link>
           </nav>
         </div>
       )}

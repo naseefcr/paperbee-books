@@ -102,9 +102,9 @@ const BooksPage = () => {
     })
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pageBackground">
       {/* Page Header */}
-      <div className="bg-paperbee-blue text-white py-12">
+      <div className="bg-headerNavigation text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -112,31 +112,31 @@ const BooksPage = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-3xl lg:text-4xl font-bold mb-4">Our Books</h1>
-            <p className="text-blue-100 text-lg">Explore our collection of children&apos;s literature</p>
+            <p className="text-accentHighlight text-lg">Explore our collection of children&apos;s literature</p>
           </motion.div>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="sticky top-16 z-40 bg-white border-b shadow-sm">
+      <div className="sticky top-16 z-40 bg-pageBackground border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search Bar */}
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondaryText" />
               <input
                 type="text"
                 placeholder="Search books..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               />
             </div>
 
             {/* Filter Button (Mobile) */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="md:hidden flex items-center justify-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-50"
+              className="md:hidden flex items-center justify-center gap-2 px-4 py-2 border rounded-lg hover:bg-accentHighlight text-mainText"
             >
               <Filter className="h-5 w-5" />
               Filters
@@ -147,7 +147,7 @@ const BooksPage = () => {
               <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {languages.map(lang => (
                   <option key={lang} value={lang}>
@@ -159,7 +159,7 @@ const BooksPage = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {categories.map(cat => (
                   <option key={cat} value={cat}>
@@ -171,7 +171,7 @@ const BooksPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {sortOptions.map(option => (
                   <option key={option.value} value={option.value}>
@@ -185,13 +185,13 @@ const BooksPage = () => {
             <div className="flex border rounded-lg overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 ${viewMode === 'grid' ? 'bg-paperbee-blue text-white' : 'bg-white text-gray-600'}`}
+                className={`p-2 ${viewMode === 'grid' ? 'bg-primaryAction text-white' : 'bg-pageBackground text-secondaryText hover:bg-accentHighlight'}`}
               >
                 <Grid className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 ${viewMode === 'list' ? 'bg-paperbee-blue text-white' : 'bg-white text-gray-600'}`}
+                className={`p-2 ${viewMode === 'list' ? 'bg-primaryAction text-white' : 'bg-pageBackground text-secondaryText hover:bg-accentHighlight'}`}
               >
                 <List className="h-5 w-5" />
               </button>
@@ -204,7 +204,7 @@ const BooksPage = () => {
               <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {languages.map(lang => (
                   <option key={lang} value={lang}>
@@ -216,7 +216,7 @@ const BooksPage = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {categories.map(cat => (
                   <option key={cat} value={cat}>
@@ -228,7 +228,7 @@ const BooksPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-paperbee-blue"
+                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAction text-mainText bg-pageBackground"
               >
                 {sortOptions.map(option => (
                   <option key={option.value} value={option.value}>
@@ -244,7 +244,7 @@ const BooksPage = () => {
       {/* Results */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-600">
+          <p className="text-secondaryText">
             Showing {filteredBooks.length} books
           </p>
         </div>
@@ -273,14 +273,14 @@ const BooksPage = () => {
         {/* No Results */}
         {filteredBooks.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No books found matching your criteria.</p>
+            <p className="text-secondaryText text-lg">No books found matching your criteria.</p>
             <button
               onClick={() => {
                 setSearchQuery('')
                 setSelectedLanguage('all')
                 setSelectedCategory('all')
               }}
-              className="mt-4 text-paperbee-blue hover:underline"
+              className="mt-4 text-primaryAction hover:underline"
             >
               Clear filters
             </button>
