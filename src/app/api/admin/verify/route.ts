@@ -1,19 +1,20 @@
-// === API ROUTE FOR ADMIN USER CHECK ===
 // src/app/api/admin/verify/route.ts
-import { type NextRequest, NextResponse } from 'next/server';
-import { verifyAdminSession } from '@/lib/firebase-admin';
+import { NextResponse } from 'next/server';
+import { firebaseAdmin } from '@/lib/firebase-admin';
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    // Get the session token from the request
     const { token } = await request.json();
     
     if (!token) {
       return NextResponse.json({ isAdmin: false, error: 'No token provided' }, { status: 401 });
     }
     
-    // Verify if the user is an admin
-    const isAdmin = await verifyAdminSession(token);
+    // Verify the ID token
+    const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
+    
+    // Check if the user has admin claims
+    const isAdmin = decodedToken.admin === true;
     
     return NextResponse.json({ isAdmin });
   } catch (error) {

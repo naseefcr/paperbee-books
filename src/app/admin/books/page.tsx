@@ -26,7 +26,7 @@ import {
   limit,
   DocumentData
 } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { db } from '@/lib/firebase-admin';
 
 interface Book {
   id: string;

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { BookOpen, DollarSign, ShoppingCart, Users } from 'lucide-react'
 import { collection, getDocs, query, where, orderBy, limit, getCountFromServer } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 interface StatCard {
   title: string

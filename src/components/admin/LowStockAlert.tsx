@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 interface Book {
   id: string

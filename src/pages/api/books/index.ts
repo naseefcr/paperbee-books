@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '../../../lib/firebase';
-import { collection, addDoc, getDocs, serverTimestamp, query, orderBy, DocumentData } from 'firebase/firestore';
+import { db } from '../../../lib/firebase-admin';
 
 interface BookInput {
   title: string;
@@ -10,7 +9,6 @@ interface BookInput {
   price: number;
   stock: number;
   coverImageUrl: string;
-  // Optional fields from previous interface, can be kept or removed based on strictness
   language?: string;
   category?: string;
 }
@@ -26,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         description, 
         stock, 
         coverImageUrl,
-        ...otherData // Collect any other fields passed in the body
+        ...otherData 
       } = req.body as BookInput;
 
       // Validation for required fields
@@ -60,16 +58,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         description,
         stock,
         coverImageUrl,
-        ...otherData, // Include other fields like language, category if they were part of BookInput and passed
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+        ...otherData,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       };
 
-      const docRef = await addDoc(collection(db, 'books'), bookDataToSave);
+      // Using Admin SDK methods
+      const docRef = await db.collection('books').add(bookDataToSave);
       
-      // Return the saved data along with the ID
-      // Note: serverTimestamp fields will be resolved by Firestore, not immediately available here.
-      // Consider fetching the doc if exact resolved timestamps are needed in the response.
       res.status(201).json({ id: docRef.id, ...bookDataToSave });
 
     } catch (error) {
@@ -81,21 +77,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } else if (req.method === 'GET') {
     try {
-      const q = query(collection(db, 'books'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const books: DocumentData[] = [];
+      // Using Admin SDK methods
+      const querySnapshot = await db.collection('books')
+        .orderBy('createdAt', 'desc')
+        .get();
+      
+      const books: { createdAt: unknown; updatedAt: unknown; id: string; }[] = [];
       querySnapshot.forEach((doc) => {
-        // Properly handle server timestamps if they need specific formatting
         const data = doc.data();
         const book = {
           id: doc.id,
           ...data,
-          // Convert Firestore Timestamps to ISO strings or milliseconds if needed by the client
           createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : null,
           updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate().toISOString() : null,
         };
         books.push(book);
       });
+      
       res.status(200).json(books);
     } catch (error) {
       console.error('Error fetching books:', error);

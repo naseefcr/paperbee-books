@@ -22,7 +22,7 @@ import {
   MessageSquare
 } from 'lucide-react'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 interface Order {
   id: string

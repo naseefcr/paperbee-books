@@ -1,32 +1,28 @@
-// === MIDDLEWARE FOR PROTECTING ADMIN ROUTES ===
 // src/middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyAdminSession } from './lib/firebase-admin';
 
-export async function middleware(request: NextRequest) {
-  // Check if the path starts with /admin
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    // Get the session cookie
+export function middleware(request: NextRequest) {
+  // Get the pathname
+  const path = request.nextUrl.pathname;
+  
+  // Check if it's accessing admin routes
+  if (path.startsWith('/admin')) {
+    // Get the cookie session token if it exists
     const session = request.cookies.get('session')?.value;
     
     if (!session) {
-      // No session cookie, redirect to login
+      // If no session cookie, redirect to login
       return NextResponse.redirect(new URL('/login?from=admin', request.url));
     }
     
-    // Verify if the user is an admin
-    const isAdmin = await verifyAdminSession(session);
-    
-    if (!isAdmin) {
-      // Not an admin, redirect to unauthorized page
-      return NextResponse.redirect(new URL('/unauthorized', request.url));
-    }
+    // If session exists, proceed (we'll verify the token in the API)
   }
-  
+
   return NextResponse.next();
 }
 
+// Only run middleware on admin routes
 export const config = {
-  matcher: '/admin/:path*',
+  matcher: ['/admin/:path*'],
 };

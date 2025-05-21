@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Save, UserPlus } from 'lucide-react'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { doc, setDoc, Timestamp } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 export default function NewUser() {
   const router = useRouter()

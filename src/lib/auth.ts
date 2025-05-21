@@ -1,19 +1,17 @@
 // src/lib/auth.ts
 import { 
-  getAuth, 
   signInWithEmailAndPassword, 
   signOut as firebaseSignOut,
   sendPasswordResetEmail,
   User
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { auth, db } from './firebase-client';
 import { setCookie, destroyCookie } from 'nookies';
 
 // Sign in user
 export async function signIn(email: string, password: string) {
   try {
-    const auth = getAuth();
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
@@ -26,9 +24,16 @@ export async function signIn(email: string, password: string) {
       path: '/',
     });
     
-    // Check if user is admin
-    const idTokenResult = await user.getIdTokenResult();
-    const isAdmin = idTokenResult.claims.admin === true;
+    // Check if user is admin by calling a server API
+    const adminCheckResponse = await fetch('/api/admin/verify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token }),
+    });
+    
+    const { isAdmin } = await adminCheckResponse.json();
     
     return { 
       success: true, 
@@ -49,7 +54,6 @@ export async function signIn(email: string, password: string) {
 // Sign out user
 export async function signOut() {
   try {
-    const auth = getAuth();
     await firebaseSignOut(auth);
     
     // Clear session cookie
@@ -65,7 +69,6 @@ export async function signOut() {
 // Reset password
 export async function resetPassword(email: string) {
   try {
-    const auth = getAuth();
     await sendPasswordResetEmail(auth, email);
     return { success: true };
   } catch (error) {

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Save, Upload, X, Trash2 } from 'lucide-react'
 import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 // Define form data type
 interface BookFormData {

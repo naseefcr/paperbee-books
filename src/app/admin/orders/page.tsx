@@ -27,7 +27,7 @@ import {
   DocumentData,
   Timestamp
 } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { db } from '@/lib/firebase-admin'
 
 interface OrderItem {
   bookId: string
