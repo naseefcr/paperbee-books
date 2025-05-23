@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-pageBackground`}>
+      <body className={`${inter.className} bg-gray-50`}>
         <LanguageProvider>
           <Header />
           <main className="min-h-screen">
