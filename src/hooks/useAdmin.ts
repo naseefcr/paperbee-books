@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// === CLIENT-SIDE AUTHENTICATION HOOK ===
-// src/hooks/useAdmin.ts
+// src/hooks/useAdmin.ts - Updated to use the new API route
 'use client'
 import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 
 export function useAdmin() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -21,12 +20,26 @@ export function useAdmin() {
       if (user) {
         try {
           // Get the ID token with force refresh to ensure we have the latest claims
-          const idTokenResult = await user.getIdTokenResult(true)
-          const hasAdminRole = !!idTokenResult.claims.admin
+          const idToken = await user.getIdToken(true)
           
-          setIsAdmin(hasAdminRole)
+          // Call our API endpoint that uses Firebase Admin
+          const response = await fetch('/api/admin/auth', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: idToken }),
+          })
           
-          if (!hasAdminRole) {
+          if (!response.ok) {
+            throw new Error('Failed to verify admin status')
+          }
+          
+          const { isAdmin } = await response.json()
+          
+          setIsAdmin(isAdmin)
+          
+          if (!isAdmin) {
             // Not an admin, redirect to unauthorized
             router.push('/unauthorized')
           }

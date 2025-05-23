@@ -1,24 +1,16 @@
-// src/app/api/admin/verify/route.ts
+// src/app/api/admin/books/count/route.ts
 import { NextResponse } from 'next/server';
-import { firebaseAdmin } from '@/lib/firebase-admin';
+import { db } from '@/lib/firebase-admin-config';
 
-export async function POST(request: Request) {
+export async function GET() {
   try {
-    const { token } = await request.json();
-    
-    if (!token) {
-      return NextResponse.json({ isAdmin: false, error: 'No token provided' }, { status: 401 });
-    }
-    
-    // Verify the ID token
-    const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
-    
-    // Check if the user has admin claims
-    const isAdmin = decodedToken.admin === true;
-    
-    return NextResponse.json({ isAdmin });
+    const snapshot = await db.collection('books').count().get();
+    return NextResponse.json({ count: snapshot.data().count });
   } catch (error) {
-    console.error('Error verifying admin status:', error);
-    return NextResponse.json({ isAdmin: false, error: 'Authentication failed' }, { status: 500 });
+    console.error('Error getting book count:', error);
+    return NextResponse.json(
+      { error: 'Failed to get book count' },
+      { status: 500 }
+    );
   }
 }

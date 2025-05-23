@@ -1,8 +1,8 @@
-// src/middleware.ts
+// src/middleware.ts - Updated for App Router
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Get the pathname
   const path = request.nextUrl.pathname;
   
@@ -16,7 +16,8 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/login?from=admin', request.url));
     }
     
-    // If session exists, proceed (we'll verify the token in the API)
+    // If session exists, we'll proceed and verify it in API calls
+    // We can't verify it here directly because we can't use Firebase Admin in middleware
   }
 
   return NextResponse.next();

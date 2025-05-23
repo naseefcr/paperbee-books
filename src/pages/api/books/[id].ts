@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { db } from '../../../lib/firebase-admin';
+import { db } from '../../../lib/firebase-admin-config';
 
 interface BookUpdateInput {
   title?: string;

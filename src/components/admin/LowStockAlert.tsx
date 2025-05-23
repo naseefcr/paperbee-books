@@ -1,11 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 // src/components/admin/LowStockAlert.tsx
 'use client'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
-import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore'
-import { db } from '@/lib/firebase-admin'
 
 interface Book {
   id: string
@@ -21,29 +20,16 @@ export default function LowStockAlert() {
   useEffect(() => {
     async function fetchLowStockBooks() {
       try {
-        const q = query(
-          collection(db, 'books'),
-          where('stock', '<', 10),
-          orderBy('stock'),
-          limit(5)
-        )
+        const response = await fetch('/api/admin/stocks');
         
-        const querySnapshot = await getDocs(q)
-        const lowStockBooks: Book[] = []
+        if (!response.ok) {
+          throw new Error(`Failed to fetch low stock books: ${response.status}`);
+        }
         
-        querySnapshot.forEach((doc) => {
-          const data = doc.data()
-          lowStockBooks.push({
-            id: doc.id,
-            title: data.title || 'Untitled Book',
-            stock: data.stock || 0,
-            coverImageUrl: data.coverImageUrl || '/placeholder-cover.jpg'
-          })
-        })
-        
-        setBooks(lowStockBooks)
+        const lowStockBooks: Book[] = await response.json();
+        setBooks(lowStockBooks);
       } catch (error) {
-        console.error('Error fetching low stock books:', error)
+        console.error('Error fetching low stock books:', error);
         // Fallback to dummy data for demo purposes
         setBooks([
           {
@@ -64,13 +50,13 @@ export default function LowStockAlert() {
             stock: 8,
             coverImageUrl: '/api/placeholder/300/400'
           }
-        ])
+        ]);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
     
-    fetchLowStockBooks()
+    fetchLowStockBooks();
   }, [])
 
   return (

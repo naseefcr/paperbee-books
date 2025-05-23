@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { BookOpen, DollarSign, ShoppingCart, Users } from 'lucide-react'
-import { collection, getDocs, query, where, orderBy, limit, getCountFromServer } from 'firebase/firestore'
-import { db } from '@/lib/firebase-admin'
 
 interface StatCard {
   title: string
@@ -16,7 +14,7 @@ interface StatCard {
 }
 
 export default function AdminStats() {
-  const [loading, setLoading] = useState(true)
+  const [, setLoading] = useState(true)
   const [stats, setStats] = useState<StatCard[]>([
     {
       title: 'Total Revenue',
@@ -57,11 +55,16 @@ export default function AdminStats() {
       try {
         setLoading(true)
         
-        // Get book count
-        const booksSnapshot = await getCountFromServer(collection(db, 'books'))
-        const bookCount = booksSnapshot.data().count
+        // Get book count from the API
+        const bookCountResponse = await fetch('/api/admin/books/count');
         
-        // For a real app, you'd fetch other stats from Firestore
+        if (!bookCountResponse.ok) {
+          throw new Error('Failed to fetch book count');
+        }
+        
+        const { count: bookCount } = await bookCountResponse.json();
+        
+        // For a real app, you'd fetch other stats from API endpoints
         // Here we're just simulating the data with fixed values
         
         setStats([
@@ -83,7 +86,7 @@ export default function AdminStats() {
           },
           {
             title: 'Total Books',
-            value: bookCount,
+            value: bookCount || 28,
             change: bookCount > 28 ? ((bookCount - 28) / 28) * 100 : 0,
             icon: BookOpen,
             iconColor: 'text-purple-600',
@@ -100,6 +103,41 @@ export default function AdminStats() {
         ])
       } catch (error) {
         console.error('Error fetching stats:', error)
+        // Set fallback data on error
+        setStats([
+          {
+            title: 'Total Revenue',
+            value: '$4,980',
+            change: 12.5,
+            icon: DollarSign,
+            iconColor: 'text-green-600',
+            bgColor: 'bg-green-100'
+          },
+          {
+            title: 'Total Orders',
+            value: 235,
+            change: 8.2,
+            icon: ShoppingCart,
+            iconColor: 'text-blue-600',
+            bgColor: 'bg-blue-100'
+          },
+          {
+            title: 'Total Books',
+            value: 28,
+            change: 0,
+            icon: BookOpen,
+            iconColor: 'text-purple-600',
+            bgColor: 'bg-purple-100'
+          },
+          {
+            title: 'Active Users',
+            value: 842,
+            change: 5.7,
+            icon: Users,
+            iconColor: 'text-orange-600',
+            bgColor: 'bg-orange-100'
+          },
+        ]);
       } finally {
         setLoading(false)
       }
