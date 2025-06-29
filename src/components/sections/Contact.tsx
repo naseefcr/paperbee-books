@@ -37,7 +37,7 @@ export default function Contact() {
             {t('title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We'd love to hear from you! Reach out to us for book orders, inquiries, or just to say hello.
+            We&apos;d love to hear from you! Reach out to us for book orders, inquiries, or just to say hello.
           </p>
         </div>
 
