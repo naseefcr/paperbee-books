@@ -1,32 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fredoka+One:wght@400&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: Inter, system-ui, sans-serif;
+    font-family: 'Nunito', Inter, system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-gradient-to-br from-orange-50 to-blue-50 min-h-screen;
+    @apply bg-gradient-to-br from-primary-50 via-secondary-50 to-cultural-50 min-h-screen font-body;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-400;
   }
 }
 
 @layer components {
+  /* Enhanced Button Components */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 
+           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
+           shadow-bee hover:shadow-honeycomb transform hover:scale-105 hover:-translate-y-1
+           relative overflow-hidden;
+  }
+  
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent 
+           transform -skew-x-12 -translate-x-full transition-transform duration-700;
+  }
+  
+  .btn-primary:hover::before {
+    @apply translate-x-full;
   }
   
   .btn-secondary {
-    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700
+           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
+           shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+
+  .btn-whatsapp {
+    @apply bg-gradient-to-r from-nature-500 to-nature-600 hover:from-nature-600 hover:to-nature-700
+           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
+           shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse-slow;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-400 text-primary-700 hover:bg-primary-500 hover:text-white
+           font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
+           hover:shadow-bee transform hover:scale-105;
   }
   
+  /* Enhanced Card Components */
   .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-reading hover:shadow-honeycomb 
+           transition-all duration-500 overflow-hidden border border-primary-100/50
+           transform hover:scale-105 hover:-translate-y-2;
+  }
+
+  .card-book {
+    @apply bg-gradient-to-br from-white to-secondary-50 rounded-book shadow-book 
+           hover:shadow-honeycomb transition-all duration-500 overflow-hidden
+           transform hover:scale-105 hover:rotate-1;
+  }
+
+  .card-honeycomb {
+    @apply bg-gradient-to-br from-primary-50 to-accent-50 rounded-honeycomb shadow-bee
+           hover:shadow-honeycomb transition-all duration-500 transform hover:scale-110;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   }
   
+  /* Text Styles */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .text-honey {
+    @apply text-primary-600 font-medium;
+  }
+
+  .text-bee {
+    @apply text-accent-600 font-bold;
+  }
+
+  .heading-playful {
+    @apply font-heading text-4xl md:text-6xl font-bold gradient-text 
+           transform hover:scale-105 transition-transform duration-300;
+  }
+
+  /* Language Badge */
+  .language-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+           bg-gradient-to-r from-cultural-100 to-cultural-200 text-cultural-800
+           border border-cultural-300 hover:from-cultural-200 hover:to-cultural-300
+           transition-all duration-300 transform hover:scale-110;
+  }
+
+  /* Bee Animation Styles */
+  .bee-fly {
+    @apply animate-float;
+  }
+
+  .honeycomb-pattern {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(245, 158, 11, 0.3) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+
+  /* Book Spine Effect */
+  .book-spine {
+    @apply relative;
+  }
+
+  .book-spine::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-400 to-primary-600;
+  }
+
+  /* Floating Elements */
+  .float-element {
+    @apply animate-float;
+  }
+
+  /* Sparkle Effect */
+  .sparkle {
+    @apply animate-sparkle;
+  }
+
+  /* Loading Animation */
+  .loading-bee {
+    @apply w-8 h-8 bg-primary-500 rounded-full animate-buzz relative;
+  }
+
+  .loading-bee::before {
+    content: '🐝';
+    @apply absolute inset-0 flex items-center justify-center text-lg;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:transform hover:scale-105 hover:-translate-y-2;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-honeycomb;
+  }
+
+  .hover-wiggle {
+    @apply transition-all duration-300 hover:animate-wiggle;
+  }
+
+  /* Cultural Diversity Elements */
+  .diversity-gradient {
+    @apply bg-gradient-to-r from-cultural-400 via-reading-400 to-nature-400;
+  }
+
+  /* Paper Texture */
+  .paper-texture {
+    background-image: 
+      linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
   }
 }
 
@@ -37,5 +196,39 @@
   
   .animation-delay-400 {
     animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  /* Text Shadow Utilities */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Glass Morphism */
+  .glass {
+    @apply bg-white/20 backdrop-blur-md border border-white/30;
+  }
+
+  .glass-honey {
+    @apply bg-primary-100/30 backdrop-blur-md border border-primary-200/50;
   }
 }
