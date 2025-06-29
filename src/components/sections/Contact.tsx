@@ -9,15 +9,15 @@ export default function Contact() {
     {
       icon: MessageCircle,
       title: t('whatsapp'),
-      value: '+91 98765 43210',
+      value: '+91 85908 85155',
       href: generateWhatsAppLink("Hello! I'd like to know more about PAPERBEE BOOKS."),
       color: 'from-green-500 to-green-600'
     },
     {
       icon: Phone,
       title: t('phone'),
-      value: '+91 98765 43210',
-      href: 'tel:+919876543210',
+      value: '+91 85908 85155',
+      href: 'tel:+918590885155',
       color: 'from-blue-500 to-blue-600'
     },
     {

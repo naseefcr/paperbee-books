@@ -42,18 +42,18 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <div className="space-y-3">
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/918590885155"
                 className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors"
               >
                 <MessageCircle size={18} />
                 <span className="text-sm">WhatsApp</span>
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+918590885155"
                 className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors"
               >
                 <Phone size={18} />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 85908 85155</span>
               </a>
               <a
                 href="mailto:info@paperbeebooks.com"
