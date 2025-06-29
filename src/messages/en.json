@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "books": "Books",
+    "about": "About",
+    "contact": "Contact",
+    "languages": "Languages"
+  },
+  "hero": {
+    "title": "Welcome to PAPERBEE BOOKS",
+    "subtitle": "Magical Stories for Children Worldwide",
+    "description": "Discover our collection of multilingual children's books, educational materials, and enchanting stories that inspire young minds across cultures.",
+    "cta": "Explore Our Books",
+    "whatsapp": "Order via WhatsApp"
+  },
+  "about": {
+    "title": "About PAPERBEE BOOKS",
+    "description": "We are a passionate children's book publishing company dedicated to creating magical stories and educational content for young readers around the world.",
+    "mission": "Our mission is to bridge cultures through storytelling, offering books in multiple languages including English, Arabic, Japanese, Indonesian, Hindi, Malayalam, Kannada, Tamil, and Urdu.",
+    "vision": "We believe every child deserves access to quality literature in their native language."
+  },
+  "books": {
+    "title": "Our Book Collection",
+    "categories": {
+      "storybooks": "Storybooks",
+      "poetry": "Poetry",
+      "educational": "Educational",
+      "language": "Language Learning",
+      "art": "Art Books"
+    },
+    "orderNow": "Order Now",
+    "learnMore": "Learn More"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "whatsapp": "Message us on WhatsApp",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "footer": {
+    "tagline": "Inspiring young minds through multilingual storytelling",
+    "copyright": "© 2024 PAPERBEE BOOKS. All rights reserved."
+  }
+}
