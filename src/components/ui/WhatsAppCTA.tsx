@@ -78,13 +78,14 @@ export default function WhatsAppCTA({
 }
 
 // Preset components for common use cases
-export function CatalogCTA({ source, className = '', size = 'md' }: { source: string; className?: string; size?: 'sm' | 'md' | 'lg' }) {
+export function CatalogCTA({ source, className = '', size = 'md', text }: { source: string; className?: string; size?: 'sm' | 'md' | 'lg'; text?: string }) {
   return (
     <WhatsAppCTA 
       variant="catalog" 
       source={source} 
       className={className}
       size={size}
+      text={text}
     />
   );
 }

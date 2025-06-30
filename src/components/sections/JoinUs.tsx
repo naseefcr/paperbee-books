@@ -353,7 +353,7 @@ export default function JoinUs() {
               
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Join our growing community of creative professionals who are passionate about 
-                children's education and storytelling. Let's inspire young minds together!
+                children&apos;s education and storytelling. Let&apos;s inspire young minds together!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

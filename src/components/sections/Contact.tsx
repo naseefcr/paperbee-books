@@ -5,6 +5,16 @@ import { useTranslations } from 'next-intl';
 import { MapPin, Mail, Phone, MessageCircle, Clock, Globe, Send, Heart, Sparkles } from 'lucide-react';
 import { whatsAppActions } from '@/lib/utils';
 
+interface ContactInfo {
+  icon: any;
+  label: string;
+  value: string;
+  href?: string;
+  description: string;
+  color: string;
+  subValue?: string;
+}
+
 export default function Contact() {
   const t = useTranslations('contact');
   
@@ -43,7 +53,7 @@ Please respond at your earliest convenience. Thank you!`;
     }));
   };
 
-  const contactInfo = [
+  const contactInfo: ContactInfo[] = [
     {
       icon: Mail,
       label: 'Email',
@@ -66,15 +76,17 @@ Please respond at your earliest convenience. Thank you!`;
       value: 'Near Scout Bhavan, Anangoor Vidyanagar PO',
       subValue: 'Kasaragod, Kerala, India 671123',
       description: 'Visit our office',
-      color: 'from-cultural-500 to-cultural-600'
+      color: 'from-cultural-500 to-cultural-600',
+      href: undefined
     },
     {
       icon: Clock,
       label: 'Business Hours',
       value: 'Monday - Saturday: 9:00 AM - 6:00 PM',
       subValue: 'Sunday: 10:00 AM - 4:00 PM',
-      description: 'When we\'re available',
-      color: 'from-accent-500 to-accent-600'
+      description: 'When we&apos;re available',
+      color: 'from-accent-500 to-accent-600',
+      href: undefined
     }
   ];
 
@@ -139,8 +151,8 @@ Please respond at your earliest convenience. Thank you!`;
           </div>
           
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-fly-in animation-delay-200">
-            We'd love to hear from you! Whether you're a parent, educator, or creative professional, 
-            <span className="gradient-text font-bold"> let's connect and create magic together</span>.
+            We&apos;d love to hear from you! Whether you&apos;re a parent, educator, or creative professional, 
+            <span className="gradient-text font-bold"> let&apos;s connect and create magic together</span>.
           </p>
         </div>
 
@@ -215,7 +227,7 @@ Please respond at your earliest convenience. Thank you!`;
               </div>
               <div>
                 <h3 className="text-2xl font-heading font-bold text-gray-800">Send a Message</h3>
-                <p className="text-gray-600 text-sm">We'll get back to you within 24 hours</p>
+                <p className="text-gray-600 text-sm">We&apos;ll get back to you within 24 hours</p>
               </div>
             </div>
 
@@ -394,8 +406,8 @@ Please respond at your earliest convenience. Thank you!`;
               </h3>
               
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of families who trust PAPERBEE BOOKS for quality children's literature. 
-                Let's create beautiful reading experiences together!
+                Join thousands of families who trust PAPERBEE BOOKS for quality children&apos;s literature. 
+                Let&apos;s create beautiful reading experiences together!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
