@@ -2,8 +2,9 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { MessageCircle, BookOpen, Sparkles, Heart, Star, Globe, ChevronDown } from 'lucide-react';
-import { generateWhatsAppLink } from '@/lib/utils';
+import { whatsAppActions } from '@/lib/utils';
 import LanguageBadge from '../ui/LanguageBadge';
+import { CatalogCTA, OrderCTA } from '../ui/WhatsAppCTA';
 import { useState } from 'react';
 
 export default function Hero() {
@@ -171,15 +172,12 @@ export default function Hero() {
               <span>Explore Our Books</span>
             </a>
             
-            <a
-              href={generateWhatsAppLink(whatsappMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp inline-flex items-center space-x-3 min-w-64 justify-center text-xl py-5 px-10 hover:scale-105 hover:-translate-y-2 transition-all duration-300 shadow-xl hover:shadow-2xl animate-pulse-slow"
-            >
-              <MessageCircle size={28} />
-              <span>Order via WhatsApp</span>
-            </a>
+            <CatalogCTA 
+              source="hero-section"
+              size="lg"
+              text="View Our Catalog"
+              className="min-w-64 justify-center text-xl py-5 px-10 hover:-translate-y-2 shadow-xl hover:shadow-2xl animate-pulse-slow"
+            />
           </div>
 
           {/* Enhanced Feature Cards */}

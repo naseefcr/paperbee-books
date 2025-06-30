@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { MessageCircle, Eye, Heart, Star, BookOpen, X, Filter, Sparkles } from 'lucide-react';
-import { generateWhatsAppLink } from '@/lib/utils';
+import { whatsAppActions } from '@/lib/utils';
 import BookModal from './BookModal';
 
 export default function BookShowcase() {
@@ -216,8 +216,7 @@ export default function BookShowcase() {
   });
 
   const handleOrder = (book: any) => {
-    const message = `Hi! I'm interested in "${book.title}" from PAPERBEE BOOKS. Price: ${book.price}. Can you provide more details about availability and shipping?`;
-    window.open(generateWhatsAppLink(message), '_blank');
+    window.open(whatsAppActions.orderBook(book.title, book.price, book.category, 'book-showcase'), '_blank');
   };
 
   return (
