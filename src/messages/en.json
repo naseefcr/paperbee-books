@@ -1,8 +1,9 @@
 {
   "nav": {
     "home": "Home",
+    "about": "About Us", 
+    "vision": "Vision & Mission",
     "books": "Books",
-    "about": "About",
     "contact": "Contact",
     "languages": "Languages"
   },

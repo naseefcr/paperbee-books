@@ -20,10 +20,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
-    { key: 'home', href: '#home' },
-    { key: 'books', href: '#books' },
-    { key: 'about', href: '#about' },
-    { key: 'contact', href: '#contact' },
+    { key: 'home', href: `/${locale}` },
+    { key: 'about', href: `/${locale}/about` },
+    { key: 'vision', href: `/${locale}/vision-mission` },
+    { key: 'books', href: `/${locale}#books` },
+    { key: 'contact', href: `/${locale}#contact` },
   ];
 
   useEffect(() => {
