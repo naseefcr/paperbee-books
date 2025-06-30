@@ -23,6 +23,7 @@ export default function Header() {
     { key: 'home', href: `/${locale}` },
     { key: 'about', href: `/${locale}/about` },
     { key: 'vision', href: `/${locale}/vision-mission` },
+    { key: 'publish', href: `/${locale}/what-we-publish` },
     { key: 'books', href: `/${locale}#books` },
     { key: 'contact', href: `/${locale}#contact` },
   ];
