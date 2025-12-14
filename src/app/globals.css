@@ -336,6 +336,14 @@ footer {
     font-size: 2rem;
   }
 
+  .nav-logo {
+    display: none;
+  }
+
+  nav .container {
+    justify-content: center;
+  }
+
   .nav ul {
     gap: 1rem;
   }

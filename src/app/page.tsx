@@ -3,7 +3,10 @@ export default function Home() {
     <>
       <header>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/hero.png" alt="Paperbee Books - Where Billion Minds Become Brilliant Minds" className="hero-image" />
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/images/hero_desktop.png" />
+          <img src="/images/hero.png" alt="Paperbee Books - Where Billion Minds Become Brilliant Minds" className="hero-image" />
+        </picture>
       </header>
 
       <nav>
