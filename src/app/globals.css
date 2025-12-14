@@ -359,13 +359,41 @@ footer {
   }
 
   nav ul {
-    gap: 1rem;
+    gap: 0.6rem;
+    /* Reduced gap to fit items */
     padding: 0.5rem 0;
+  }
+
+  nav a {
+    font-size: 0.95rem;
+    /* Slightly smaller text */
+  }
+
+  /* Compact Languages */
+  .languages-grid {
+    gap: 0.6rem;
+  }
+
+  .language-tag {
+    padding: 0.5rem 1.2rem;
+    /* More compact */
+    font-size: 0.95rem;
   }
 
   /* Reduction in internal padding for cards and boxes */
   .card {
     padding: 1.5rem;
+    text-align: center;
+    /* Fix alignment issues */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Keep lists inside cards left-aligned for readability */
+  .card ul {
+    text-align: left;
+    align-self: flex-start;
   }
 
   .mission-box {
