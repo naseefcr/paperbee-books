@@ -1,295 +1,355 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fredoka+One:wght@400&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  /* User Defined Palette */
+  --primary-yellow: #FFDF59;
+  --dark-text: #120C10;
+  --teal-accent: #154B4D;
+  --white: #FFFFFF;
+  --brand-blue: #05253F;
+  /* ONLY for PAPERBEE BOOKS text */
 
-@layer base {
-  html {
-    font-family: 'Nunito', Inter, system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply bg-gradient-to-br from-primary-50 via-secondary-50 to-cultural-50 min-h-screen font-body;
-    background-image: 
-      radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
-
-  /* Accessibility improvements */
-  *:focus {
-    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .gradient-text {
-      @apply text-black;
-    }
-    
-    .card {
-      @apply border-2 border-black;
-    }
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
-  /* Screen reader only content */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  .sr-only:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: 0.5rem;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-primary-50;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-primary-300 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-400;
-  }
-
-  /* Color contrast improvements */
-  .text-shadow {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .text-shadow-lg {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+  /* Derived for Design Layout */
+  --light-bg: #f9f9f9;
+  --nav-bg: var(--teal-accent);
 }
 
-@layer components {
-  /* Enhanced Button Components */
-  .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 
-           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
-           shadow-bee hover:shadow-honeycomb transform hover:scale-105 hover:-translate-y-1
-           relative overflow-hidden;
-  }
-  
-  .btn-primary::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent 
-           transform -skew-x-12 -translate-x-full transition-transform duration-700;
-  }
-  
-  .btn-primary:hover::before {
-    @apply translate-x-full;
-  }
-  
-  .btn-secondary {
-    @apply bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700
-           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
-           shadow-lg hover:shadow-xl transform hover:scale-105;
-  }
-
-  .btn-whatsapp {
-    @apply bg-gradient-to-r from-nature-500 to-nature-600 hover:from-nature-600 hover:to-nature-700
-           text-white font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
-           shadow-lg hover:shadow-xl transform hover:scale-105 animate-pulse-slow;
-  }
-
-  .btn-outline {
-    @apply border-2 border-primary-400 text-primary-700 hover:bg-primary-500 hover:text-white
-           font-semibold py-3 px-6 rounded-honeycomb transition-all duration-300 
-           hover:shadow-bee transform hover:scale-105;
-  }
-  
-  /* Enhanced Card Components */
-  .card {
-    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-reading hover:shadow-honeycomb 
-           transition-all duration-500 overflow-hidden border border-primary-100/50
-           transform hover:scale-105 hover:-translate-y-2;
-  }
-
-  .card-book {
-    @apply bg-gradient-to-br from-white to-secondary-50 rounded-book shadow-book 
-           hover:shadow-honeycomb transition-all duration-500 overflow-hidden
-           transform hover:scale-105 hover:rotate-1;
-  }
-
-  .card-honeycomb {
-    @apply bg-gradient-to-br from-primary-50 to-accent-50 rounded-honeycomb shadow-bee
-           hover:shadow-honeycomb transition-all duration-500 transform hover:scale-110;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  }
-  
-  /* Text Styles */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-600 bg-clip-text text-transparent;
-  }
-
-  .text-honey {
-    @apply text-primary-600 font-medium;
-  }
-
-  .text-bee {
-    @apply text-accent-600 font-bold;
-  }
-
-  .heading-playful {
-    @apply font-heading text-4xl md:text-6xl font-bold gradient-text 
-           transform hover:scale-105 transition-transform duration-300;
-  }
-
-  /* Language Badge */
-  .language-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-           bg-gradient-to-r from-cultural-100 to-cultural-200 text-cultural-800
-           border border-cultural-300 hover:from-cultural-200 hover:to-cultural-300
-           transition-all duration-300 transform hover:scale-110;
-  }
-
-  /* Bee Animation Styles */
-  .bee-fly {
-    @apply animate-float;
-  }
-
-  .honeycomb-pattern {
-    background-image: 
-      radial-gradient(circle at 1px 1px, rgba(245, 158, 11, 0.3) 1px, transparent 0);
-    background-size: 20px 20px;
-  }
-
-  /* Book Spine Effect */
-  .book-spine {
-    @apply relative;
-  }
-
-  .book-spine::before {
-    content: '';
-    @apply absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-400 to-primary-600;
-  }
-
-  /* Floating Elements */
-  .float-element {
-    @apply animate-float;
-  }
-
-  /* Sparkle Effect */
-  .sparkle {
-    @apply animate-sparkle;
-  }
-
-  /* Loading Animation */
-  .loading-bee {
-    @apply w-8 h-8 bg-primary-500 rounded-full animate-buzz relative;
-  }
-
-  .loading-bee::before {
-    content: '🐝';
-    @apply absolute inset-0 flex items-center justify-center text-lg;
-  }
-
-  /* Hover Effects */
-  .hover-lift {
-    @apply transition-all duration-300 hover:transform hover:scale-105 hover:-translate-y-2;
-  }
-
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-honeycomb;
-  }
-
-  .hover-wiggle {
-    @apply transition-all duration-300 hover:animate-wiggle;
-  }
-
-  /* Cultural Diversity Elements */
-  .diversity-gradient {
-    @apply bg-gradient-to-r from-cultural-400 via-reading-400 to-nature-400;
-  }
-
-  /* Paper Texture */
-  .paper-texture {
-    background-image: 
-      linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%),
-      radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@layer utilities {
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-  
-  .animation-delay-400 {
-    animation-delay: 400ms;
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--dark-text);
+  line-height: 1.6;
+  background-color: var(--white);
+}
+
+/* Header with Playful Circles */
+header {
+  background: var(--primary-yellow);
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Decorative Circles */
+header::before,
+header::after {
+  content: '';
+  position: absolute;
+  background: var(--white);
+  /* White circles for contrast on yellow */
+  opacity: 0.3;
+  border-radius: 50%;
+}
+
+header::before {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -100px;
+}
+
+header::after {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -50px;
+}
+
+.logo-container {
+  position: relative;
+  z-index: 2;
+}
+
+.bee-icon {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+h1 {
+  color: var(--brand-blue);
+  /* Specific Requirement */
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  color: var(--teal-accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Navigation - Sticky */
+nav {
+  background: var(--teal-accent);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 2rem;
+  margin: 0;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  color: var(--primary-yellow);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* General Section Styles */
+section {
+  padding: 5rem 0;
+}
+
+section:nth-child(even) {
+  background: var(--light-bg);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: var(--teal-accent);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  color: var(--dark-text);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Hero Content */
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-lead {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--teal-accent);
+}
+
+/* Languages Tags */
+.languages-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.language-tag {
+  background: var(--teal-accent);
+  color: var(--white);
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.language-tag:hover {
+  transform: translateY(-3px);
+  background: var(--brand-blue);
+  /* Subtle interaction using brand color */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards Design */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-top: 6px solid var(--primary-yellow);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Special styling for icon inside card */
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  background: #fff8e1;
+  /* Very light yellow for backing */
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.card h3 {
+  color: var(--teal-accent);
+}
+
+.card ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.card ul li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.card ul li::before {
+  content: '➝';
+  position: absolute;
+  left: 0;
+  color: var(--primary-yellow);
+  font-weight: bold;
+}
+
+/* Vision & Mission Special */
+.mission-box {
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid #eee;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-list {
+  list-style: none;
+  text-align: left;
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
+.mission-list li {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.mission-list li::before {
+  content: '•';
+  color: var(--teal-accent);
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  top: -8px;
+}
+
+/* Contact Section */
+.contact-container {
+  background: var(--teal-accent);
+  color: var(--white);
+  padding: 4rem;
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-container h2 {
+  color: var(--primary-yellow);
+}
+
+.contact-container p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-container a {
+  color: var(--primary-yellow);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.contact-details {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  background: var(--dark-text);
+  color: #888;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
   }
 
-  .animation-delay-600 {
-    animation-delay: 600ms;
+  h2 {
+    font-size: 2rem;
   }
 
-  .animation-delay-800 {
-    animation-delay: 800ms;
+  .nav ul {
+    gap: 1rem;
   }
 
-  .animation-delay-1000 {
-    animation-delay: 1000ms;
-  }
-
-  /* Text Shadow Utilities */
-  .text-shadow-sm {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Glass Morphism */
-  .glass {
-    @apply bg-white/20 backdrop-blur-md border border-white/30;
-  }
-
-  .glass-honey {
-    @apply bg-primary-100/30 backdrop-blur-md border border-primary-200/50;
+  .contact-container {
+    padding: 2rem;
   }
 }
