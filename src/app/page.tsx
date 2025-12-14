@@ -2,11 +2,8 @@ export default function Home() {
   return (
     <>
       <header>
-        <div className="logo-container">
-          <span className="bee-icon">🐝</span>
-          <h1>PAPERBEE BOOKS</h1>
-          <p className="tagline">Where Billion Minds Become Brilliant Minds</p>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/hero.png" alt="Paperbee Books - Where Billion Minds Become Brilliant Minds" className="hero-image" />
       </header>
 
       <nav>

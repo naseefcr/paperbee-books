@@ -29,37 +29,18 @@ body {
 }
 
 /* Header with Playful Circles */
+/* Header with Image */
 header {
-  background: var(--primary-yellow);
-  padding: 3rem 0;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
 }
 
-/* Decorative Circles */
-header::before,
-header::after {
-  content: '';
-  position: absolute;
-  background: var(--white);
-  /* White circles for contrast on yellow */
-  opacity: 0.3;
-  border-radius: 50%;
-}
-
-header::before {
-  width: 300px;
-  height: 300px;
-  top: -150px;
-  right: -100px;
-}
-
-header::after {
-  width: 200px;
-  height: 200px;
-  bottom: -100px;
-  left: -50px;
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .logo-container {
