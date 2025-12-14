@@ -209,6 +209,14 @@ export default function Home() {
 
       <footer>
         <div className="container">
+          <div style={{ marginBottom: '1.5rem' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo_white.jpeg"
+              alt="Paperbee Books Logo"
+              style={{ height: '80px', margin: '0 auto', display: 'block' }}
+            />
+          </div>
           <p>&copy; 2025 Paperbee Books. All Rights Reserved. | 🐝 Where Billion Minds Become Brilliant Minds</p>
         </div>
       </footer>
