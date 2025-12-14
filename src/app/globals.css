@@ -80,13 +80,23 @@ nav {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 50px;
+  width: auto;
+}
+
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 0 2rem;
   margin: 0;
 }
 

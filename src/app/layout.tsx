@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: 'Paperbee Books | Where Billion Minds Become Brilliant Minds',
   description: "Paperbee Books publishes vibrant children's literature and educational materials in multiple languages.",
   icons: {
-    icon: '/images/logo_black.jpeg',
+    icon: '/images/logo_only.png',
   },
   openGraph: {
-    images: ['/images/logo_black.jpeg'],
+    images: ['/images/logo_only.png'],
   },
 };
 

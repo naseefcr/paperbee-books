@@ -7,13 +7,18 @@ export default function Home() {
       </header>
 
       <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#vision">Vision</a></li>
-          <li><a href="#publish">Publications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div className="container">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo_only.png" alt="Paperbee Logo" className="nav-logo" />
+
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#publish">Publications</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
       </nav>
 
       <section id="home">
@@ -212,7 +217,7 @@ export default function Home() {
           <div style={{ marginBottom: '1.5rem' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logo_white.jpeg"
+              src="/images/logo_only.png"
               alt="Paperbee Books Logo"
               style={{ height: '80px', margin: '0 auto', display: 'block' }}
             />
