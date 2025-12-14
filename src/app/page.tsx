@@ -185,6 +185,35 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Featured Book Covers */}
+          <div style={{ marginTop: '4rem' }}>
+            <h3 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--teal-accent)' }}>Featured Collection</h3>
+            <div className="book-gallery">
+              {[
+                "the crow and the swan.jpeg",
+                "the dog and his reflection.jpeg",
+                "the fox and the crow.jpeg",
+                "the fox and the grapes.jpeg",
+                "the grasshoper and the ant.jpeg",
+                "the hare and his ears.jpeg",
+                "the horse and stag.jpeg",
+                "the lion and the boar.jpeg",
+                "the lion and the mouse.jpeg",
+                "the rabbit and the tortoise.jpeg"
+              ].map((cover, index) => (
+                <div key={index} className="book-cover-container">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/cover-pages/${cover}`}
+                    alt={cover.replace('.jpeg', '')}
+                    className="book-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
           <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.2rem', fontStyle: 'italic' }}>
             Every book is thoughtfully structured to balance fun, clarity, and learning.
           </p>

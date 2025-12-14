@@ -435,3 +435,40 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Book Gallery */
+.book-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: 1rem 0;
+}
+
+.book-cover-container {
+  perspective: 1000px;
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* Smooth corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 3px 3px 10px rgba(0, 0, 0, 0.05);
+  /* Subtle depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.book-cover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .book-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on mobile */
+    gap: 1rem;
+  }
+}
