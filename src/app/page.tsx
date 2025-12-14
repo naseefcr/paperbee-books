@@ -5,7 +5,7 @@ export default function Home() {
         <div className="logo-container">
           <span className="bee-icon">🐝</span>
           <h1>PAPERBEE BOOKS</h1>
-          <p className="tagline">MYPAPERBEE.COM</p>
+          <p className="tagline">Where Billion Minds Become Brilliant Minds</p>
         </div>
       </header>
 
@@ -24,13 +24,19 @@ export default function Home() {
           <div className="section-header">
             <div className="section-icon">🌟</div>
             <p className="hero-lead">Welcome to PAPERBEE BOOKS</p>
-            <h2>Bringing stories, creativity, and learning to children everywhere.</h2>
+            <h2>a place where stories gently guide children into the world of language, imagination, and learning.</h2>
           </div>
 
           <p>
-            At Paperbee Books, we believe that books open doors to imagination, curiosity, and understanding. We
-            publish vibrant children&apos;s literature and high-quality educational materials in a wide range of
-            languages—because every child deserves access to joyful learning in their mother tongue.
+            We create books that feel warm, simple, and joyful. Each page invites children to read with
+            confidence, think with curiosity, and learn without pressure. Our books are loved by young
+            readers and trusted by parents and educators alike.
+          </p>
+
+          <p style={{ marginTop: '2rem' }}>
+            At PAPERBEE BOOKS, we publish beautifully crafted children’s literature and thoughtfully
+            designed educational books in multiple languages because every child deserves to learn in a
+            language that feels familiar and comforting.
           </p>
 
           <div style={{ marginTop: '3rem' }}>
@@ -45,13 +51,42 @@ export default function Home() {
               <span className="language-tag">Kannada</span>
               <span className="language-tag">Tamil</span>
               <span className="language-tag">Urdu</span>
+              <span className="language-tag">and more...</span>
             </div>
           </div>
 
-          <p style={{ marginTop: '2rem' }}>
-            Explore our collection of storybooks, poems, language workbooks, art activity
-            books, and early learning resources for kids around the globe.
+          <p style={{ marginTop: '2rem', fontStyle: 'italic', fontWeight: 'bold' }}>
+            From first words to lifelong reading habits, PAPERBEE BOOKS grows with every child.
           </p>
+        </div>
+      </section>
+
+      <section id="special">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-icon">✨</div>
+            <h2>What Makes Our Books Special</h2>
+            <p style={{ fontSize: '1.2rem', color: 'var(--teal-accent)', fontWeight: 'bold' }}>SPARKWORD METHOD</p>
+          </div>
+
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <p style={{ marginBottom: '2rem' }}>
+              Every PAPERBEE BOOKS title is created using a unique creative approach that carefully
+              blends storytelling with learning. Words are introduced naturally, ideas flow smoothly,
+              and concepts stay clear and memorable.
+            </p>
+
+            <p>This approach helps readers:</p>
+            <ul style={{ listStyle: 'none', margin: '1rem 0 2rem' }}>
+              <li style={{ marginBottom: '0.5rem' }}>✅ Understand faster</li>
+              <li style={{ marginBottom: '0.5rem' }}>✅ Remember longer</li>
+              <li style={{ marginBottom: '0.5rem' }}>✅ Enjoy reading without fear or difficulty</li>
+            </ul>
+
+            <p style={{ fontWeight: '600' }}>
+              Our books feel easy to read, yet powerful in impact turning reading into a joyful habit rather than a task.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -63,24 +98,31 @@ export default function Home() {
             <p style={{ fontSize: '1.2rem' }}>Inspiring young minds, one book at a time.</p>
           </div>
 
-          <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem' }}>
-            PAPERBEE BOOKS is a global publishing
-            company dedicated to nurturing the next generation through reading. Our mission is to make learning
-            delightful and accessible, regardless of geography or language.
+          <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 1.5rem' }}>
+            PAPERBEE BOOKS is a global children’s publishing company committed to nurturing young
+            readers through meaningful stories and purposeful learning materials.
           </p>
 
-          <div className="cards-grid">
+          <p style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3rem' }}>
+            We believe books should do more than teach — they should comfort, inspire, and stay with
+            a child long after the last page is turned.
+          </p>
+
+          <div className="cards-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
             <div className="card">
-              <div className="card-icon">📖</div>
-              <h3>Children’s Literature</h3>
-              <p>Imaginative storybooks, enchanting poems, and culturally rich tales.</p>
+              <div className="card-icon">👶</div>
+              <h3>Children</h3>
+              <p>Discovering language and imagination.</p>
             </div>
             <div className="card">
-              <div className="card-icon">✏️</div>
-              <h3>Educational Materials</h3>
-              <p>
-                Language learning books, grammar guides, writing workbooks, vocabulary builders, and art books.
-              </p>
+              <div className="card-icon">🏡</div>
+              <h3>Parents</h3>
+              <p>Supporting learning at home.</p>
+            </div>
+            <div className="card">
+              <div className="card-icon">🍎</div>
+              <h3>Educators</h3>
+              <p>Shaping young minds.</p>
             </div>
           </div>
         </div>
@@ -96,17 +138,18 @@ export default function Home() {
           <div className="mission-box">
             <h3 style={{ color: 'var(--teal-accent)' }}>Our Vision</h3>
             <p>
-              To become a leading global publisher of multilingual children&apos;s books that spark imagination,
-              encourage learning, and celebrate cultural diversity.
+              To become a trusted global publisher of multilingual children’s books that inspire
+              imagination, strengthen language skills, and celebrate cultural diversity.
             </p>
 
             <hr style={{ margin: '2rem auto', width: '50%', border: '0', borderTop: '1px solid #ddd' }} />
 
             <h3 style={{ color: 'var(--teal-accent)' }}>Our Mission</h3>
             <ul className="mission-list">
-              <li>Promote literacy and creativity through engaging content.</li>
-              <li>Publish in multiple languages to reach children worldwide.</li>
-              <li>Empower educators and parents with meaningful, effective learning tools.</li>
+              <li>Create joyful and meaningful reading experiences</li>
+              <li>Publish high-quality books in multiple languages</li>
+              <li>Support educators and parents with effective learning tools</li>
+              <li>Make reading simple, natural, and enjoyable</li>
             </ul>
           </div>
         </div>
@@ -115,33 +158,32 @@ export default function Home() {
       <section id="publish">
         <div className="container">
           <div className="section-header">
-            <div className="section-icon">✨</div>
+            <div className="section-icon">📖</div>
             <h2>What We Publish</h2>
           </div>
 
           <div className="cards-grid">
             <div className="card">
-              <div className="card-icon">📖</div>
+              <div className="card-icon">✨</div>
               <h3>Storybooks</h3>
-              <p>Folktales, original stories, fantasy, and moral tales for various age groups.</p>
+              <p>Folktales, original stories, fantasy adventures, and gentle moral tales for different age groups.</p>
             </div>
             <div className="card">
-              <div className="card-icon">📝</div>
-              <h3>Poetry Collections</h3>
-              <p>Simple, rhythmic, and meaningful poems that children love.</p>
-            </div>
-            <div className="card">
-              <div className="card-icon">🧠</div>
+              <div className="card-icon">🎓</div>
               <h3>Educational Books</h3>
               <ul>
                 <li>Language learning & grammar</li>
-                <li>Bilingual books</li>
+                <li>Bilingual and multilingual books</li>
                 <li>Alphabet, numbers & writing practice</li>
-                <li>Art & creativity books</li>
-                <li>General knowledge for early learners</li>
+                <li>Art, creativity & activity books</li>
+                <li>Early general knowledge</li>
               </ul>
             </div>
           </div>
+
+          <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '1.2rem', fontStyle: 'italic' }}>
+            Every book is thoughtfully structured to balance fun, clarity, and learning.
+          </p>
         </div>
       </section>
 
@@ -149,19 +191,19 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <div className="section-icon">🤝</div>
-            <h2>Join Us</h2>
+            <h2>Contact Us</h2>
           </div>
 
           <div className="contact-container">
-            <p>Are you an author, illustrator, or educator with a passion for children’s content?</p>
-            <h2>We’d love to hear from you!</h2>
-            <p>PAPERBEE BOOKS collaborates with creative minds across the globe.</p>
+            <h2 style={{ marginBottom: '2rem', color: 'var(--primary-yellow)' }}>We’d love to hear from you!</h2>
 
             <div className="contact-details">
               <p>📬 <strong>Email:</strong> <a href="mailto:paperbeebook@gmail.com">paperbeebook@gmail.com</a></p>
               <p style={{ marginTop: '1rem' }}>
                 📍 <strong>Headquarters:</strong><br />
-                Paperbee books, near Scout bhavan, Anangoor Vidyanagar po,<br /> kasaragod, kerala, india 671123
+                PAPERBEE BOOKS<br />
+                Near Scout Bhavan, Anangoor Vidyanagar P.O<br />
+                Kasaragod, Kerala, India – 671123
               </p>
             </div>
           </div>
@@ -170,7 +212,7 @@ export default function Home() {
 
       <footer>
         <div className="container">
-          <p>&copy; 2025 Paperbee Books. All Rights Reserved. | 🐝 Inspiring Young Minds</p>
+          <p>&copy; 2025 Paperbee Books. All Rights Reserved. | 🐝 Where Billion Minds Become Brilliant Minds</p>
         </div>
       </footer>
     </>
