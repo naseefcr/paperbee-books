@@ -1,7 +1,7 @@
 # CLAUDE.md - PAPERBEE BOOKS
 
 ## Project Overview
-PAPERBEE BOOKS is a modern, multilingual children's book publishing company website built with Next.js 14, TypeScript, and Tailwind CSS. The site features internationalization support (English/Hindi), WhatsApp Business integration, and accessibility features.
+PAPERBEE BOOKS is a simplified, static-style children's book publishing website built with Next.js 14 and React. It features a single-page layout with a modern, colorful design.
 
 ## Development Commands
 ```bash
@@ -25,70 +25,23 @@ npm run type-check
 ```
 src/
 ├── app/                 # Next.js App Router
-│   ├── [locale]/       # Internationalized routes (en/hi)
-│   │   ├── about/      # About page
-│   │   ├── vision-mission/ # Vision & Mission page
-│   │   └── what-we-publish/ # What We Publish page
-│   └── globals.css     # Global styles
-├── components/         # Reusable components
-│   ├── layout/        # Header, Footer
-│   ├── sections/      # Hero, About, Books, Contact, etc.
-│   ├── ui/           # BookCard, CTAButton, WhatsAppCTA, etc.
-│   ├── about/        # About page components
-│   ├── publish/      # What We Publish page components
-│   ├── vision/       # Vision & Mission page components
-│   ├── seo/          # SEO components
-│   ├── analytics/    # Performance monitoring
-│   └── a11y/         # Accessibility components
-├── lib/              # Utilities (analytics, structuredData, utils)
-├── messages/         # i18n translation files (en.json, hi.json)
-└── types/           # TypeScript type definitions
+│   ├── page.tsx        # Main single-page application
+│   ├── layout.tsx      # Root layout
+│   └── globals.css     # CSS Styles
 ```
 
 ## Key Technologies
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Internationalization**: next-intl
-- **Icons**: Lucide React
-- **Performance**: Web Vitals monitoring
+- **Styling**: Vanilla CSS (in globals.css)
+- **Fonts**: Google Fonts (Outfit)
 
-## Book Categories
-- Storybooks
-- Poetry
-- Educational materials
-- Language learning
-- Art books
-
-## Languages Supported
-- English (en) - Primary
-- Hindi (hi) - Secondary
-- More languages planned
-
-## WhatsApp Integration
-The site uses WhatsApp Business for order processing and customer communication. WhatsApp CTAs are integrated throughout the site.
-
-## Accessibility Features
-- Skip links for keyboard navigation
-- Screen reader support
-- Semantic HTML structure
-- Proper ARIA labels
-
-## SEO & Performance
-- Structured data for search engines
-- Optimized images
-- Performance monitoring
-- Static site generation ready
-
-## Development Notes
-- All components follow TypeScript strict mode
-- Tailwind CSS classes use consistent spacing and color schemes
-- Child-friendly color palette and design
-- Responsive design for all screen sizes
-- Component-based architecture for reusability
+## Design Philosophy
+- **Colors**: Vibrant yellow, teal, and dark blue palette.
+- **Layout**: Single-page scrolling design with sticky navigation.
+- **Aesthetics**: Playful, child-friendly, and clean.
 
 ## Common Tasks
-- Adding new book categories: Update `BookCategories` component
-- Adding new languages: Add translation files in `messages/` and update i18n config
-- Modifying WhatsApp integration: Check `WhatsAppCTA` component
-- SEO updates: Modify `SEOHead` component and structured data in `lib/structuredData.ts`
+- **Updating Content**: Edit the JSX directly in `src/app/page.tsx`.
+- **Modifying Styles**: Update CSS rules in `src/app/globals.css`.
+- **Changing Metadata**: specific metadata export in `src/app/layout.tsx`.

@@ -1,25 +1,20 @@
 # PAPERBEE BOOKS
 
-A modern, multilingual children's book publishing company website built with Next.js 14 and TypeScript.
+A simplified, modern children's book publishing website built with Next.js 14.
 
 ## Features
 
 - 🌟 Modern, colorful, child-friendly design
-- 📱 Fully responsive and accessible
-- ⚡ Fast loading with static site generation
-- 🌍 Multilingual support (English & Hindi initially)
-- 📚 WhatsApp Business integration for orders
-- 🎨 Tailwind CSS for styling
-- 🔧 TypeScript for type safety
+- 📱 Fully responsive layout
+- ⚡ Fast single-page architecture
+- � Custom styling with vanilla CSS
+- 🔧 TypeScript for reliability
 
 ## Tech Stack
 
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Internationalization**: next-intl
-- **Icons**: Lucide React
-- **Deployment**: Static export ready
+- **Styling**: Pure CSS
 
 ## Getting Started
 
@@ -39,44 +34,12 @@ npm run dev
 
 ```
 src/
-├── app/                 # Next.js App Router
-│   ├── [locale]/       # Internationalized routes
+├── app/
+│   ├── page.tsx        # Main content
+│   ├── layout.tsx      # HTML structure & Metadata
 │   └── globals.css     # Global styles
-├── components/         # Reusable components
-│   ├── layout/        # Layout components
-│   ├── sections/      # Page sections
-│   └── ui/           # UI components
-├── lib/              # Utilities and helpers
-├── messages/         # Internationalization files
-└── types/           # TypeScript type definitions
 ```
-
-## Languages Supported
-
-- English (en)
-- Hindi (hi)
-- More languages coming soon...
-
-## Book Categories
-
-- 📖 Storybooks
-- 🎵 Poetry
-- 🎓 Educational materials
-- 🌍 Language learning
-- 🎨 Art books
-
-## Contact & Orders
-
-All orders are processed through WhatsApp Business for a personalized experience.
-
-## Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
 
 ## License
 
-© 2024 PAPERBEE BOOKS. All rights reserved.
+© 2025 PAPERBEE BOOKS. All rights reserved.
