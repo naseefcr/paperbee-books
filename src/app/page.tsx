@@ -27,7 +27,6 @@ export default function Home() {
       <section id="home">
         <div className="container hero-content">
           <div className="section-header">
-            <div className="section-icon">🌟</div>
             <p className="hero-lead">Welcome to PAPERBEE BOOKS</p>
             <h2>a place where stories gently guide children into the world of language, imagination, and learning.</h2>
           </div>
