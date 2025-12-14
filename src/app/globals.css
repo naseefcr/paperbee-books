@@ -195,7 +195,7 @@ h3 {
 /* Cards Design */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
   margin-top: 2rem;
 }
@@ -329,13 +329,27 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Adjust section padding for mobile */
+  section {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Navigation adjustments */
   .nav-logo {
     display: none;
   }
@@ -344,11 +358,46 @@ footer {
     justify-content: center;
   }
 
-  .nav ul {
+  nav ul {
     gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Reduction in internal padding for cards and boxes */
+  .card {
+    padding: 1.5rem;
+  }
+
+  .mission-box {
+    padding: 1.5rem;
   }
 
   .contact-container {
-    padding: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-lead {
+    font-size: 1.2rem;
+  }
+
+  .cards-grid {
+    gap: 1.5rem;
+    /* Allow single column on very small screens */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
   }
 }
